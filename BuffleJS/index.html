@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>BuffleJS</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/baffle.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>V1be - WEB Developer</h1>
+		<p>BaffleJs is excellent!</p>
+	</div>
+	<script>
+		const h1 = baffle(".container h1");
+		const p = baffle(".container p");
+		p.set({
+			characters: '1234567890-=asdfghjkl;zxcvbnmQWERTYUIOPSASDJFDSXZCNJSAD',
+			speed: 100
+		});
+		h1.set({
+			characters: '1234567890-=asdfghjkl;zxcvbnmDSADQWEOPWQIETREINMXNV',
+			speed: 100
+		});
+		h1.start();
+		p.start();
+		h1.reveal(8000);
+		p.reveal(8000);
+	</script>
+</body>
+</html>

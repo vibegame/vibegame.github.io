@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Lato|Montserrat:400,700");
+* {
+  margin: 0;
+  padding: 0; }
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background-color: #04001f;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: Montserrat; }
+  .container h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: .8rem;
+    padding-bottom: 2.5rem; }
+  .container p {
+    font-family: Lato;
+    color: #d1d1d1;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: .6rem; }
+
+@media screen and (max-width: 870px) {
+  html {
+    font-size: 1.9vmin; } }
