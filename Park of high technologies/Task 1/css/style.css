@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-size: 14px;
+    font-family: "Arial";
+    overflow-x: hidden;
+    min-width: 320px;
+}
+.quote {
+    width: 100%;
+    background-color: #abd8ff;
+    color: #1f5aff;
+    text-align: center;
+}
+.quote h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding: 15px 0;
+}
+main.main {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
+main.main nav.nav,
+main.main .article
+{
+    float: left;
+}
+main.main nav.nav {
+    width: 250px;
+    min-height: 600px;
+    padding-bottom: 3000px;
+    margin-bottom: -3000px;
+    background-color: #fff066;
+}
+main.main nav.nav h3 {
+    margin: 20px 0 0 20px;
+}
+main.main nav.nav .nav-menu {
+    margin: 10px 0 0 50px;
+}
+main.main nav.nav .nav-menu li {
+    padding-left: -10px;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+main.main nav.nav .nav-menu li:first-child {
+    margin-top: 35px;
+}
+
+main.main .article {
+    width: calc(100% - 250px);
+    box-sizing: border-box;
+    padding: 15px 50px;
+    min-height: 600px;
+    background-image: url(../img/ball.png);
+    background-repeat: repeat-y;
+    background-position: 100% 0;
+    background-size: 50px;
+}
+main.main .article h2 {
+    margin-bottom: 25px;
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+}
+main.main .article img {
+    width: 400px;
+    float: left;
+    margin: 0 15px 9px 0;
+}
+
+main.main .article p {
+    font-size: 1.1rem;
+}
+
+
+@media screen and (max-width: 970px) {
+    html {
+        font-size: 13px;
+    }
+    main.main nav.nav,
+    main.main .article
+    {
+        float: none;
+    }
+    main.main nav.nav {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 10px 0 20px 0;
+        min-height: auto;
+    }
+    main.main nav.nav h3 {
+        margin-left: 15px;
+        margin-top: 0;
+    }
+    main.main nav.nav .nav-menu {
+        display: block;
+        margin: 0;
+    }
+    main.main nav.nav .nav-menu li {
+        display: inline-block;
+        padding-left: 15px;
+        margin-top: 10px;
+        font-size: 1.1rem;
+    }
+    main.main nav.nav .nav-menu li:first-child {
+        margin-top: 35px;
+    }
+    main.main .article {
+        width: 100%;
+        min-height: auto;
+        padding: 10px 60px 20px 10px;
+    }
+    main.main .article h2 {
+        margin-bottom: 10px;
+    }
+    main.main .article img {
+        float: none;
+        display: block;
+        width: 100%;
+    }
+    main.main .article p {
+        margin: 0 10px 0 0;
+    }
+}
