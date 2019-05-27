@@ -1,0 +1,404 @@
+@import 'vars'
+@import 'fonts'
+@import 'media'
+@import 'start'
+body
+    box-sizing: border-box
+.header
+    position: relative
+    width: 100vw
+    height: calc(100vh - 80px)
+    margin-top: 80px
+    .btn.started
+        margin-top: 60px
+        background-color: $main-color
+        color: #fff
+        font-family: Montserrat, sans-serif
+        border: 0
+        padding: 15px 40px
+        &:hover
+            color: $main-color
+            background-color: #fff
+
+.first_pic, .first_dark_pic
+	position: absolute
+	width: 100%
+	height: 100%
+	top: 0
+	left: 0
+
+.first_pic
+	background-image: url('../img/man.jpg')
+	background-size: cover
+	background-position: center
+	z-index: 1
+
+.first_dark_pic
+    z-index: 2
+    background-color: #012035
+    opacity: 0.59
+
+.first_block_main
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    height: 90%
+    position: relative
+    z-index: 3
+
+.first_block_main
+    h1.title
+        font-size: 115px
+        color: white
+        font-weight: bold
+        font-family: Montserrat, sans-serif
+
+.first_block_main
+	p.subtitle
+        line-height: 1.65
+        letter-spacing: 2px
+        text-align: center
+        color: white
+        font-size: 21px
+        margin-top: 50px
+        font-family: Montserrat, sans-serif
+.sec_block
+    width: 100vw
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding: 40px 0
+.sec_block_header
+    width: 100vw
+    display: flex
+    flex-direction: column
+    align-items: center
+.sec_block_header_pic
+    background-image: url('../img/sec_block_header_pic.jpg')
+    width: 120px
+    height: 120px
+    background-size: cover
+.sec_block_header_title
+    font-size: 40px
+    font-weight: bold
+    margin-top: 30px
+    margin-bottom: 30px
+    font-family: Montserrat, sans-serif
+    letter-spacing: 2px
+    color: #363636
+.sec_block_header_title_spec, .third_block_header_title_spec, .fourth_block_header_title_spec
+    color: #307db1 
+    font-weight: normal
+.sec_block_main
+    width: 85vw
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    @media screen and (max-width: 1300px)
+        width: 100vw
+    @media screen and (max-width: 1000px)
+        justify-content: center
+.sec_block_main_item
+    width: 380px
+    display: flex
+    flex-direction: column
+    align-items: center
+    @media screen and (max-width: 1400px)
+        width: 310px
+    @media screen and (max-width: 1000px)
+        width: 60%
+.sec_block_main_item_img
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-top: 70px
+    img
+        height: 120px
+.sec_block_main_item_text_title
+    font-size: 25px
+    text-align: center
+    font-weight: bold
+    font-family: Montserrat, sans-serif
+    letter-spacing: 2px
+    text-transform: uppercase
+    color: #333
+    margin-top: 29px
+.sec_block_main_item_text_parag
+    text-align: center
+    font-family: Montserrat, sans-serif
+    letter-spacing: 2px
+    font-size: 16px
+    padding: 20px 40px
+    line-height: 23px
+    opacity: .7
+
+
+.third_block
+    position: relative
+    width: 100vw
+.third_block_pic, .third_block_dark
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+.third_block_pic
+    background-image: url('../img/mac.jpg')
+    background-size: cover
+    background-position: center
+    z-index: -2
+.third_block_dark
+    z-index: -1
+    background-color: #1d0e3f
+    opacity: 0.59
+.third_block_main
+    z-index: 9999
+    display: flex
+    flex-direction: column
+    align-items: center
+.third_block_header
+    margin-top: 30px
+    margin-bottom: 60px
+.third_block_header_pic
+    display: flex
+    flex-direction: row
+    justify-content: center
+    img
+        height: 115px
+.third_block_header_title
+    font-size: 40px
+    font-weight: bold
+    font-family: Montserrat, sans-serif
+    letter-spacing: 2px
+    color: white
+    box-sizing: border-box
+    padding-top: 30px
+.third_block_nikita, .third_block_alex
+    width: 100vw
+.third_block_nikita_1, .third_block_alex_1
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    width: 100%
+    margin: 40px 0
+    @media screen and (max-width: 1100px)
+        flex-direction: column
+        justify-content: flex-start
+        align-items: center
+        margin: 50px 0
+        .third_block_nikita_text, .third_block_alex_text
+            width: 60%
+            text-align: center
+            margin: 0
+
+.third_block_alex_1
+    flex-direction: row-reverse
+    @media screen and (max-width: 1100px)
+        flex-direction: column
+        justify-content: flex-start
+        align-items: center       
+
+.third_block_nikita_pic, .third_block_alex_pic
+    img 
+        height: 300px
+        border-radius: 50%
+.third_block_nikita_text
+    width: 650px
+    margin-left: 10vw
+.third_block_alex_text
+    width: 650px
+    margin-right: 10vw
+
+
+.third_block_nikita_text_title, .third_block_alex_text_title
+    font-size: 35px
+    font-weight: bold
+    font-family: Montserrat, sans-serif
+    letter-spacing: 3px
+    color: white
+    padding-top: 40px
+    @media screen and (max-width: 1100px)
+        padding-top: 20px
+        font-size: 33px
+.third_block_nikita_text_prof, .third_block_alex_text_prof
+    color: white
+    font-size: 18px
+    font-family: 'Montserrat', sans-serif
+    font-style: italic
+    padding-top: 30px
+    color: #dcdcdc
+    letter-spacing: 3px
+    opacity: .8
+    @media screen and (max-width: 1100px)
+        padding-top: 20px
+        font-size: 17px
+.third_block_nikita_text_p, .third_block_alex_text_p
+    color: #fff
+    font-size: 17px
+    font-family: 'Montserrat'
+    letter-spacing: 3px
+    padding-top: 40px
+    line-height: 27px
+    text-transform: uppercase
+    @media screen and (max-width: 1100px)
+        padding-top: 30px
+        font-size: 17px
+
+
+
+
+
+.fourth_block
+    width: 100vw
+    display: flex
+    flex-direction: column
+    align-items: center
+.fourth_block_header
+    margin-top: 50px
+.fourth_block_header_pic
+    display: flex
+    flex-direction: row
+    justify-content: center
+    img
+        height: 115px
+.fourth_block_header_title
+    font-size: 40px
+    font-weight: bold
+    font-family: Montserrat, sans-serif
+    letter-spacing: 2px
+    color: black
+    box-sizing: border-box
+    padding-top: 30px
+.fourth_block_main
+    width: 65%
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    padding: 90px 0px
+    @media screen and (max-width: 1550px)
+        width: 75%
+    @media screen and (max-width: 1250px)
+        width: 90%
+.fourth_block_main_logo
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+.fourth_block_main_logo_title
+    h3
+        font-size: 90px
+        font-family: "Space Age"
+        background: linear-gradient(45deg, #083561 0%, #0e6cc2 100%)
+        -webkit-background-clip: text
+        -webkit-text-fill-color: transparent
+        user-select: none
+        animation: hue 20s linear infinite
+
+.fourth_block_main_logo_feed
+    padding: 20px 0px
+    .git
+            color: #000
+            &:hover
+                color: #5f5f5f
+    .telegram
+        color: #12a4da
+        &:hover
+            color: #127eda
+    .git, .telegram
+        font-size: 22px
+        transition: .25s
+        margin: 0 3px
+
+.fourth_block_main_logo_loc
+    font-family: Montserrat, sans-serif
+    letter-spacing: 2px
+    font-size: 17px
+    padding: 10px 0px 
+
+.fourth_block
+    .form-write-us
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 500px
+        padding: 30px
+        box-shadow: 0 0 4px 4px rgba(0,0,0, 0.04)
+        @media screen and (max-width: 1000px)
+            width: 400px
+        h3
+            color: #9d9d9d
+            font-weight: bold
+            font-size: 30px
+        input
+            $height: 50px
+            width: 80%
+            height: $height
+            margin: 30px 0 0 0
+            border-radius: $height
+            border: 1px solid #acacac
+            font-size: 13px
+            outline: 0
+            padding-left: 15px
+            $color-placeholder: #9d9d9d
+            font-family: Montserrat
+            letter-spacing: 1px
+            &::-webkit-input-placeholder  /* Chrome/Opera/Safari */
+                color: $color-placeholder
+            &::-moz-placeholder /* Firefox 19+ */
+                color: $color-placeholder
+            &:-ms-input-placeholder /* IE 10+ */
+                color: $color-placeholder
+            &:-moz-placeholder /* Firefox 18- */
+                color: $color-placeholder
+            @media screen and (max-width: 1000px)
+                width: 90%
+                $height: 45px
+                height: $height
+                border-radius: $height
+        .input-message
+            width: 80%
+            height: 200px
+            border: 1px solid #acacac
+            border-radius: 30px
+            padding: 10px 15px 0 15px
+            font-size: 13px
+            font-family: Montserrat
+            outline: 0
+            resize: none
+            margin-top: 30px
+            margin-bottom: 30px
+            overflow-y: hidden
+            $color-placeholder: #9d9d9d
+            &::-webkit-input-placeholder  /* Chrome/Opera/Safari */
+                color: $color-placeholder
+            &::-moz-placeholder /* Firefox 19+ */
+                color: $color-placeholder
+            &:-ms-input-placeholder /* IE 10+ */
+                color: $color-placeholder
+            &:-moz-placeholder /* Firefox 18- */
+                color: $color-placeholder
+            
+            @media screen and (max-width: 1000px)
+                width: 90%
+                height: 160px
+        .btn.send
+            background: $main-color
+            color: #fff
+            outline: 0
+            font-family: Montserrat
+            padding: 12px 50px
+            &:hover
+                background: #fff
+                color: $main-color  
+            @media screen and (max-width: 1000px)
+                padding: 10px 40px
+                font-size: 16px
+.fourth_block_footer
+    p
+        font-size: 16px
+        font-family: Montserrat
+        letter-spacing: 2px
+        padding-bottom: 30px
+        color: #363636
