@@ -4,7 +4,14 @@ function checkPalindrom(str) {
     str = str.toLowerCase();
     str = str.replace(/[.,\/#!?$%ьъ\^&\*;:{}=\-_`~()\s]/g,"");
     str = str.replace(/ё/g,"е");
-    return str == str.split('').reverse().join('');
+    let s = 0, e = str.length-1;
+    for(let i = 0;i<e;i++) {
+        console.log(str[i] + "  " + str[e]);
+        if(str[i] != str[e])
+            return false;
+        e--;
+    }
+    return true;
 }
 if(checkPalindrom(str))
     alert("Да");
