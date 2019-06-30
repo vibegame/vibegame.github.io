@@ -1,17 +1,15 @@
 var str = "            S    Hello     E              "; // сама строка
 str = prompt("Введите желаемую строку:", str);
-var target = " "; // цель поиска
 function myTrim(str) {
-    let pos = 0;
-    while(str[pos] == target) {
-        pos++;
+    let posA = 0,
+        posB = str.length - 1;
+    while(str[posA] == " ") {
+        posA++;
     }
-    str = str.slice(pos);
-    pos = str.length - 1;
-    while(str[pos] == target) {
-        pos--;
+    while(str[posB] == " ") {
+        posB--;
     }
-    str = str.slice(0, pos+1);
+    str = str.slice(posA, posB+1);
     return str;
 }
 str = myTrim(str);
