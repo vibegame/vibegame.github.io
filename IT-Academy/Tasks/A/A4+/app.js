@@ -4,15 +4,16 @@ function checkPalindrom(str) {
     str = str.toLowerCase();
     str = str.replace(/[.,\/#!?$%ьъ\^&\*;:{}=\-_`~()\s]/g,"");
     str = str.replace(/ё/g,"е");
-    let s = 0, e = str.length-1;
-    for(let i = 0;i<e;i++) {
-        if(str[i] != str[e])
+    function recurs(k) {
+        if(k == Math.round(str.length/2)) {
+            return true;
+        }  
+        if(str[k] == str[str.length-1-k]) {
+            return recurs(str, k + 1);
+        }
+        else
             return false;
-        e--;
     }
-    return true;
+    return recurs(0);
 }
-if(checkPalindrom(str))
-    alert("Да");
-else
-    alert("Нет");
+console.log(checkPalindrom(str));
