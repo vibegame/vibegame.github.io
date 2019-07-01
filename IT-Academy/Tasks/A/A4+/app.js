@@ -4,7 +4,7 @@ function checkPalindrom(str) {
     str = str.toLowerCase();
     str = str.replace(/[.,\/#!?$%ьъ\^&\*;:{}=\-_`~()\s]/g,"");
     str = str.replace(/ё/g,"е");
-    function recurs(k) {
+    function recurs(str, k) {
         if(k == Math.round(str.length/2)) {
             return true;
         }  
@@ -14,6 +14,6 @@ function checkPalindrom(str) {
         else
             return false;
     }
-    return recurs(0);
+    return recurs(str, 0);
 }
 console.log(checkPalindrom(str));
