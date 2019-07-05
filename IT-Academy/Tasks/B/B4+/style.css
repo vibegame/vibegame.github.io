@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #f78d5c;
+}
+h1 {
+    line-height: 100vh;
+    text-align: center;
+    font-family: sans-serif;
+}
