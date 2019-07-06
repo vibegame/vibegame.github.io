@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #7AA0FF;
+}
+h1 {
+    text-align: center;
+    line-height: 100vh;
+    font-family: Arial;
+}
