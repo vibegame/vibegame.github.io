@@ -18,6 +18,7 @@ function howManyVowels(str) {
     }  
     return vowels;
 }
+
 let str = prompt("Введите строку и мы узнаем, сколько гласных букв в ней:");
 let letters = howManyVowels(str);
 for(let key in letters) {
