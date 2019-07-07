@@ -1,5 +1,6 @@
 function howManyVowels(str) {
     str = str.toLowerCase();
+    let result = 0;
     let vowels = {
         "а": 0,
         "о": 0,
@@ -13,10 +14,10 @@ function howManyVowels(str) {
         "е": 0,
     };
     for(let i = 0;i<str.length;i++) {
-        if(!vowels[str[i]] == undefined)
-            vowels[str[i]]++;
+        if(str[i] in vowels)
+            result++;
     }  
-    return vowels;
+    return result;
 }
 let str = prompt("Введите строку и мы узнаем, сколько гласных букв в ней:");
 let letters = howManyVowels(str);
