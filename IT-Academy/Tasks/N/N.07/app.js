@@ -1,26 +1,25 @@
 function howManyVowels(str) {
     str = str.toLowerCase();
+    let result = 0;
     let vowels = {
-        "а": 1,
-        "о": 1,
-        "э": 1,
-        "ы": 1,
-        "и": 1,
-        "у": 1,
-        "я": 1,
-        "ё": 1,
-        "ю": 1,
-        "е": 1,
+        "а": 0,
+        "о": 0,
+        "э": 0,
+        "ы": 0,
+        "и": 0,
+        "у": 0,
+        "я": 0,
+        "ё": 0,
+        "ю": 0,
+        "е": 0,
     };
     for(let i = 0;i<str.length;i++) {
-        if(vowels[str[i]])
-            vowels[str[i]]++;
+        if(str[i] in vowels)
+            result++;
     }  
-    return vowels;
+    return result;
 }
 
 let str = prompt("Введите строку и мы узнаем, сколько гласных букв в ней:");
 let letters = howManyVowels(str);
-for(let key in letters) {
-    console.log(key + " - " + (letters[key]-1));
-}
+console.log(letters);
