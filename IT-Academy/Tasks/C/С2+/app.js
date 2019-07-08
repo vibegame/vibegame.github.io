@@ -16,6 +16,7 @@ function deepCopy(obj) {
     }
     return copy;
   }
+  return copy;
 }
 
 let test = {num:10, numdrob:3.14, str:"Hello", array:[1,2,3], obj:{obj_num:40, obj_str:"Bye", obj_array:[4,5,6]}, test_nan:NaN, test_null:null, test_undefined:undefined, test_infinity: Infinity}
