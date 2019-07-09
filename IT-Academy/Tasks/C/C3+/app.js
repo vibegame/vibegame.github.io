@@ -1,8 +1,10 @@
 function deepComp(obj1, obj2) {
   if (obj1 === obj2) return true;
-
-  if (obj1 == null || typeof obj1 != "object" ||
-      obj2 == null || typeof obj2 != "object")
+  if (obj1 === null || typeof obj1 != "object" ||
+      obj2 === null || typeof obj2 != "object")
+    return false;
+  if((typeof obj1 == "object" && Array.isArray(obj2)) ||
+     (typeof obj2 == "object" && Array.isArray(obj1)))
     return false;
 
   var prop1 = 0, prop2 = 0;
@@ -49,3 +51,4 @@ console.log("deepComp(5,\"5\") = " + deepComp(5,"5")); //будет false
 console.log("deepComp(5,H1) = " + deepComp(5,H1)); //будет false
 console.log("deepComp(A1,H1) = " + deepComp(A1,H1)); //будет false
 console.log("deepComp(A2,A3) = " + deepComp(A2,A3)); //будет false
+console.log("deepComp( [5,7], {0:5,1:7} ) =  " + deepComp( [5,7], {0:5,1:7} ) );
