@@ -1,70 +1,75 @@
 function deepComp(obj1, obj2) {
 
-  if(obj1 === obj2) {
-      return true;
-  }
-
-  if(!isFinite(obj1) && !isFinite(obj2) && typeof(obj2) != "object" && typeof(obj1) != "object") {
-    if(Number.isNaN(obj1) && Number.isNaN(obj2))
-      return true;
-    if(obj1 === obj2)
-      return true;
-    return false;
-  }
-
-  if (obj1 === null || typeof obj1 != "object" ||
-  obj2 === null || typeof obj2 != "object")
+  if (typeof (obj1) != typeof (obj2)) // Не подходят по типу
     return false;
 
-  if(Array.isArray(obj1) && Array.isArray(obj2)) {
-    if(obj1.length != obj2.length)
+  if (obj1 === obj2) // Если есть равные, то возвращаем true
+    return true;
+
+  /* 
+  Здесь остались числа, строки, объекты(массивы)
+  */
+
+  if (typeof (obj2) != "object" && typeof (obj1) != "object") { // Всё, что не объект, проверяем на NaN или на равенство
+    if (Number.isNaN(obj1) && Number.isNaN(obj2))
+      return true;
+    if(obj1 != obj2)
       return false;
-    for(let i = 0; i<obj1.length; i++) {
-      if(!deepComp(obj1[i], obj2[i]))
+  }
+    /*
+  Здесь мы отсеили абсолютно всё, кроме объектов и массивов.
+  */
+  if (Array.isArray(obj1) && Array.isArray(obj2)) { // Здесь работаем только с массивами
+    if (obj1.length != obj2.length)
+      return false;
+    for (let i = 0; i < obj1.length; i++) {
+      if (!deepComp(obj1[i], obj2[i]))
         return false;
     }
   }
-
-  if((typeof obj1 == "object" && Array.isArray(obj2)) ||
-     (typeof obj2 == "object" && Array.isArray(obj1)))
+  if ((typeof obj1 == "object" && Array.isArray(obj2)) || // проверка на array == array и object == object, если нет, то возвращаем false
+    (typeof obj2 == "object" && Array.isArray(obj1)))
     return false;
 
+  /*
+  Здесь мы отсеили абсолютно всё, кроме объектов.
+  */
   let count = {
     obj1: 0,
     obj2: 0
   };
 
-  for(let key in obj1)
+  for (let key in obj1)
     count.obj1++;
-  for(let key in obj2)
+  for (let key in obj2)
     count.obj2++;
 
-  if(count.obj1 != count.obj2)
+  if (count.obj1 != count.obj2) // если элементов в одном объекте меньше, чем в другом, значит они уже не могут быть равны
     return false;
-    
-  for(let key in obj1) {
-    if(!(key in obj2) || !deepComp(obj1[key], obj2[key])) {
+
+  for (let key in obj1) { // Если ключа нет в другом объекте, возвращаем false. Если есть, то проверяем на равенство.
+    if (!(key in obj2) || !deepComp(obj1[key], obj2[key])) {
       return false;
     }
   }
   return true;
 }
-var H1={ a:5, b: { b1:6, b2:7 } };
-var H2={ b: { b1:6, b2:7 }, a:5 };
-var H3={ a:5, b: { b1:6 } };
-var H4={ a:5, b: { b1:66, b2:7 } };
-var H5={ a:5, b: { b1:6, b2:7, b3:8 } };
-var H6={ a:null, b:undefined, c:Number.NaN };
-var H7={ c:Number.NaN, b:undefined, a:null };
-var H8={a:5,b:6};
-var H9={c:5,d:6};
-var H10={a:5};
-var A1=[5,7];
-var A2=[5,5,7];
-var A3=[5,8,7];
-console.log("deepComp(H1,H2) = " + deepComp(H1,H2)); //будет true
-console.error("deepComp(H1,H3) = " + deepComp(H1,H3)); //будет false
-console.error("deepComp(H1,H4) = " + deepComp(H1,H4)); //будет false
+var H1 = { a: 5, b: { b1: 6, b2: 7 } };
+var H2 = { b: { b1: 6, b2: 7 }, a: 5 };
+var H3 = { a: 5, b: { b1: 6 } };
+var H4 = { a: 5, b: { b1: 66, b2: 7 } };
+var H5 = { a: 5, b: { b1: 6, b2: 7, b3: 8 } };
+var H6 = { a: null, b: undefined, c: Number.NaN };
+var H7 = { c: Number.NaN, b: undefined, a: null };
+var H8 = { a: 5, b: 6 };
+var H9 = { c: 5, d: 6 };
+var H10 = { a: 5 };
+var A1 = [5, 7];
+var A2 = [5, 5, 7];
+var A3 = [5, 8, 7];
+console.log("deepComp(H1,H2) = " + deepComp(H1, H2)); //будет true
+console.error("deepComp(H1,H3) = " + deepComp(H1, H3)); //будет false
+console.error("deepComp(H1,H4) = " + deepComp(H1, H4)); //будет false
 console.error("deepComp(H1,H5) = " + deepComp(H1,H5)); //будет false
 console.log("deepComp(H6,H7) = " + deepComp(H6,H7)); //будет true
 console.error("deepComp(H8,H9) = " + deepComp(H8,H9)); //будет false
