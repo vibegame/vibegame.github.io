@@ -1,7 +1,14 @@
-console.log(10**20);
-let arr = [1, 2, NaN];
-let obj = {red: "#f00", black:"#000", green: "#00f"};
-console.log(arr.includes(NaN));
-console.log(Object.entries(obj));
-
-Object.entries(obj).map(([name, color]) => {console.log(`${name.padEnd(20, '-')} Count: ${color.padStart(5, '|')}`);});
+// == Promises version ==
+function multiply(a, b) {
+    return new Promise(function (resolve) {
+    resolve(a * b);
+    });
+   }
+   function foo() {
+    return new Promise(resolve => resolve(multiply(2, 5)))
+        .then(result => result);
+}
+   // Errors will be swallowed here
+   new Promise(function() {
+    foo().then(result => console.log(result));
+   });
