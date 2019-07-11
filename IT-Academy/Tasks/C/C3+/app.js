@@ -1,50 +1,40 @@
 function deepComp(obj1, obj2) {
+  
+  let type1 = typeof(obj1);
+  let type2 = typeof(obj2);
 
-  if (typeof (obj1) != typeof (obj2)) // Не подходят по типу
+  if (type1 != type2) // Не подходят по типу
     return false;
 
   if (obj1 === obj2) // Если есть равные, то возвращаем true
     return true;
 
-  /* 
-  Здесь остались числа, строки, объекты(массивы)
-  */
-
-  if (typeof (obj2) != "object" && typeof (obj1) != "object") { // Всё, что не объект, проверяем на NaN или на равенство
+  if (type1 != "object" && type2 != "object") { // Всё, что не объект, проверяем на NaN или на равенство
     if (Number.isNaN(obj1) && Number.isNaN(obj2))
       return true;
-    if(obj1 != obj2)
-      return false;
+    return false;
   }
-    /*
-  Здесь мы отсеили абсолютно всё, кроме объектов и массивов.
-  */
-  if (Array.isArray(obj1) && Array.isArray(obj2)) { // Здесь работаем только с массивами
+  let obj1IsArray = Array.isArray(obj1);
+  let obj2IsArray = Array.isArray(obj2);
+
+  if (obj1IsArray && obj2IsArray) { // Здесь работаем только с массивами
     if (obj1.length != obj2.length)
       return false;
     for (let i = 0; i < obj1.length; i++) {
       if (!deepComp(obj1[i], obj2[i]))
         return false;
     }
+    return true;
   }
-  if ((typeof obj1 == "object" && Array.isArray(obj2)) || // проверка на array == array и object == object, если нет, то возвращаем false
-    (typeof obj2 == "object" && Array.isArray(obj1)))
+  // Здесь остались только объекты, но среди них могут быть одиночки-null, Array.
+  if (obj1IsArray || obj2IsArray || obj1 === null || obj2 === null)
     return false;
 
   /*
   Здесь мы отсеили абсолютно всё, кроме объектов.
   */
-  let count = {
-    obj1: 0,
-    obj2: 0
-  };
 
-  for (let key in obj1)
-    count.obj1++;
-  for (let key in obj2)
-    count.obj2++;
-
-  if (count.obj1 != count.obj2) // если элементов в одном объекте меньше, чем в другом, значит они уже не могут быть равны
+  if (Object.keys(obj1).length != Object.keys(obj2).length) // если элементов в одном объекте меньше, чем в другом, значит они уже не могут быть равны
     return false;
 
   for (let key in obj1) { // Если ключа нет в другом объекте, возвращаем false. Если есть, то проверяем на равенство.
@@ -54,6 +44,7 @@ function deepComp(obj1, obj2) {
   }
   return true;
 }
+
 var H1 = { a: 5, b: { b1: 6, b2: 7 } };
 var H2 = { b: { b1: 6, b2: 7 }, a: 5 };
 var H3 = { a: 5, b: { b1: 6 } };
