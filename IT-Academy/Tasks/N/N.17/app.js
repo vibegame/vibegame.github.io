@@ -41,6 +41,7 @@ function howManyVowels(func, str) {
         case 'reduce': return solveThroughReduce();
     }
 }
-console.log(howManyVowels("forEach", "АоАооБгнрпЕеЯя"));
-console.log(howManyVowels("filter", "АоАооБгнрпЕеЯя"));
-console.log(howManyVowels("reduce", "АоАооБгнрпЕеЯя"));
+let str = prompt("Введите строку");
+console.log("Результат через forEach: " + howManyVowels("forEach", str));
+console.log("Результат через filter: " + howManyVowels("filter", str));
+console.log("Результат через reduce: " + howManyVowels("reduce", str));
