@@ -9,7 +9,7 @@ function deepComp(obj1, obj2) {
   if (obj1 === obj2) // Если есть равные, то возвращаем true
     return true;
 
-  if (type1 != "object" && type2 != "object") { // Всё, что не объект, проверяем на NaN или на равенство
+  if (type1 != "object") { // Всё, что не объект, проверяем на NaN или на равенство
     if (Number.isNaN(obj1) && Number.isNaN(obj2))
       return true;
     return false;
