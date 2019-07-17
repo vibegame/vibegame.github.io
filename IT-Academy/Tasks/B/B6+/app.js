@@ -34,11 +34,11 @@ function buildWrapper(tag) {
 
         wrap.text = transpHTML(str);
         for(let key in wrap.properties) {
-            properties += ` ${key}="${wrap.properties[key]}"`;
+            properties += ` ${key}="${transpHTML(wrap.properties[key])}"`;
         }
 
         return `<${wrap.tag}${properties}>${wrap.text}</${wrap.tag}>`;
     }
 }
 var wrapP = buildWrapper("P");
-console.log( wrapP("Вкусные M&M's") );
+console.log( wrapP("Вкусные M&M's",{align:"center",alt:"aa&nn"}) );
