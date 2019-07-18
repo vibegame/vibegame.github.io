@@ -37,19 +37,19 @@ function getDays(month, year) {
       12:31
     };
     let days = 0;
+    if(year == 0)
+      months[2][1] = 28;
     if(month == 2) {
-      if(year%4) {
+        if(year%4 == 0) {
+          if(year%100 == 0 && year%400>0) {
+            days = months[2][0]; 
+          } else {
+            days = months[2][1];
+          }
+        } else {
           days = months[2][0];
-          return days;
-      }
-      else {
-        if(year%100 && !(year%400)) {
-          days = months[2][0];
-          return days;
         }
-        days = months[2][1];
         return days;
-      } 
     }
     days = months[month];
     return days;
@@ -57,7 +57,8 @@ function getDays(month, year) {
   return {
     "Через объект и IF": getDays_1(),
     "Через класс Date": getDays_2(),
-    "Месяц": transpMonth() 
+    "Месяц": transpMonth(),
+    "Год": year
   };
 }
 let month = +prompt("Введите номер месяца(1 - 12)");
