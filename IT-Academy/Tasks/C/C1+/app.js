@@ -38,11 +38,18 @@ function getDays(month, year) {
     };
     let days = 0;
     if(month == 2) {
-      if(year%4)
-        days = months[2][0];
-      else
+      if(year%4) {
+          days = months[2][0];
+          return days;
+      }
+      else {
+        if(year%100 && !(year%400)) {
+          days = months[2][0];
+          return days;
+        }
         days = months[2][1];
-      return days;
+        return days;
+      } 
     }
     days = months[month];
     return days;
@@ -55,4 +62,4 @@ function getDays(month, year) {
 }
 let month = +prompt("Введите номер месяца(1 - 12)");
 let year = +prompt("Введите номер года");
-console.log(getDays(month, year));
+console.log(getDays(month, year));    
