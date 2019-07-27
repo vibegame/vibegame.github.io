@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #8FC4FF;
+
+}
+h1 {
+    text-align: center;
+    line-height: 100vh;
+    font-family: Arial;
+}
+.btn {
+    width: 180px;
+    height: 65px;
+    line-height: 65px;
+    border-radius: 20px;
+    margin: 10px 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+    background-color: #4F75D1;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+}
+.btn.tests {
+    background-color: #4C999E;
+}
+.btn:hover {
+    filter: hue-rotate(30deg)
+}
