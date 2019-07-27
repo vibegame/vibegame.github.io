@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #E3F4FF;
+}
+form label {
+    display: block;
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 14px;
+}
+form .input__longText {
+    width: 250px;
+}
+form .input__shortText {
+    width: 180px;
+}
+form .input__number {
+    width: 100px;
+}
+form .input__longText,
+form .input__shortText,
+form .input__number {
+    height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+}
+form .input__textarea {
+    height: 80px;
+    width: 180px;
+}
+form input[type="submit"] {
+    display: block;
+    padding: 10px 10px;
+    cursor: pointer;
+}
