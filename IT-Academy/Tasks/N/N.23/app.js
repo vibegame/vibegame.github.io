@@ -2,7 +2,7 @@
 
 function createForm(formStruct) {
   function Create() {
-    this.longText = function(label, name) {
+    this.longtext = function(label, name) {
       let labelDOM = document.createElement("label");
       labelDOM.innerHTML = label;
       let inputDOM = document.createElement("input");
@@ -12,7 +12,7 @@ function createForm(formStruct) {
       formDOM.appendChild(labelDOM);
       formDOM.appendChild(inputDOM);
     };
-    this.shortText = function(label, name) {
+    this.shorttext = function(label, name) {
       let labelDOM = document.createElement("label");
       labelDOM.innerHTML = label;
       let inputDOM = document.createElement("input");
@@ -96,32 +96,6 @@ function createForm(formStruct) {
   let createDOM = new Create();
 
   formStruct.forEach(element => {
-    // switch (element.kind) {
-    //   case "longtext":
-    //     createDOM.longText(element.label, element.name);
-    //     break;
-    //   case "shorttext":
-    //     createDOM.shortText(element.label, element.name);
-    //     break;
-    //   case "number":
-    //     createDOM.number(element.label, element.name);
-    //     break;
-    //   case "combo":
-    //     createDOM.combo(element.label, element.name, element.variants);
-    //     break;
-    //   case "radio":
-    //     createDOM.radio(element.label, element.name, element.variants);
-    //     break;
-    //   case "check":
-    //     createDOM.check(element.label, element.name);
-    //     break;
-    //   case "memo":
-    //     createDOM.memo(element.label, element.name);
-    //     break;
-    //   case "submit":
-    //     createDOM.submit(element.label);
-    //     break;
-    // }
 
     createDOM[element.kind](element.label, element.name, element.variants);
 
