@@ -96,38 +96,41 @@ function createForm(formStruct) {
   let createDOM = new Create();
 
   formStruct.forEach(element => {
-    switch (element.kind) {
-      case "longtext":
-        createDOM.longText(element.label, element.name);
-        break;
-      case "shorttext":
-        createDOM.shortText(element.label, element.name);
-        break;
-      case "number":
-        createDOM.number(element.label, element.name);
-        break;
-      case "combo":
-        createDOM.combo(element.label, element.name, element.variants);
-        break;
-      case "radio":
-        createDOM.radio(element.label, element.name, element.variants);
-        break;
-      case "check":
-        createDOM.check(element.label, element.name);
-        break;
-      case "memo":
-        createDOM.memo(element.label, element.name);
-        break;
-      case "submit":
-        createDOM.submit(element.label);
-        break;
-    }
+    // switch (element.kind) {
+    //   case "longtext":
+    //     createDOM.longText(element.label, element.name);
+    //     break;
+    //   case "shorttext":
+    //     createDOM.shortText(element.label, element.name);
+    //     break;
+    //   case "number":
+    //     createDOM.number(element.label, element.name);
+    //     break;
+    //   case "combo":
+    //     createDOM.combo(element.label, element.name, element.variants);
+    //     break;
+    //   case "radio":
+    //     createDOM.radio(element.label, element.name, element.variants);
+    //     break;
+    //   case "check":
+    //     createDOM.check(element.label, element.name);
+    //     break;
+    //   case "memo":
+    //     createDOM.memo(element.label, element.name);
+    //     break;
+    //   case "submit":
+    //     createDOM.submit(element.label);
+    //     break;
+    // }
+
+    createDOM[element.kind](element.label, element.name, element.variants);
+
   });
 
   return formDOM;
 }
-
-var form = createForm([
+var formDef1=
+[
   {label:'Название сайта:',kind:'longtext',name:'sitename'},
   {label:'URL сайта:',kind:'longtext',name:'siteurl'},
   {label:'Посетителей в сутки:',kind:'number',name:'visitors'},
@@ -139,6 +142,17 @@ var form = createForm([
   {label:'Разрешить отзывы:',kind:'check',name:'votes'},
   {label:'Описание сайта:',kind:'memo',name:'description'},
   {label:'Опубликовать:',kind:'submit'},
-]);
+];
 
-document.body.appendChild(form);
+var formDef2=
+[
+  {label:'Фамилия:',kind:'longtext',name:'lastname'},
+  {label:'Имя:',kind:'longtext',name:'firstname'},
+  {label:'Отчество:',kind:'longtext',name:'secondname'},
+  {label:'Возраст:',kind:'number',name:'age'},
+  {label:'Зарегистрироваться:',kind:'submit'},
+];
+var formDOM__1 = createForm(formDef1);
+var formDOM__2 = createForm(formDef2);
+document.body.appendChild(formDOM__1);
+document.body.appendChild(formDOM__2);
