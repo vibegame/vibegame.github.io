@@ -6,37 +6,42 @@ var inputs = {
   websiteURL: document.querySelector(`.form .form__website-url input`),
   startDate: document.querySelector(`.form .form__start-date input`),
   visitors: document.querySelector(`.form .form__visitors input`),
-  email: document.querySelector(`.form .form__email input`)
+  email: document.querySelector(`.form .form__email input`),
+  payment: document.querySelector(`.form .form__payment .payment-radio`),
+  license: document.querySelector(`.form .form__license input`),
+  description: document.querySelector(`.form .form__description textarea`)
 };
 function validateAll(method, item) {
   class Validate {
-    constructor(value) {
-      this.value = value.trim();
+    constructor(item) {
+      if(item.value)
+        item.value = item.value.trim();
+      this.item = item;
     }
     developer() {
-      if (this.value.length < 2)
+      if (this.item.value.length < 2)
         return { state: false, message: "Слишком коротко" };
-      else if (!/^[a-zA-Z0-9\s]+$/.test(this.value))
+      else if (!/^[a-zA-Z0-9\s]+$/.test(this.item.value))
         return { state: false, message: "Недопустимые символы" };
       else return { state: true, message: "Хорошо" };
     }
 
     websiteName() {
-      if (this.value.length < 4)
+      if (this.item.value.length < 4)
         return { state: false, message: "Слишком коротко" };
-      else if (/\s/.test(this.value))
+      else if (/\s/.test(this.item.value))
         return { state: false, message: "Нельзя использовать пробелы" };
-      else if (!/^[a-zA-Z0-9]+$/.test(this.value))
+      else if (!/^[a-zA-Z0-9]+$/.test(this.item.value))
         return { state: false, message: "Недопустимые символы" };
       else return { state: true, message: "Хорошо" };
     }
 
     websiteURL() {
-      if (this.value.length < 3)
+      if (this.item.value.length < 3)
         return { state: false, message: "Слишком коротко" };
       else if (
         !/^((https?|ftp)\:\/\/)?([a-z0-9]{1})((\.[a-z0-9-])|([a-z0-9-]))*\.([a-z]{2,6})(\/?)$/.test(
-          this.value
+          this.item.value
         )
       )
         return { state: false, message: "Неверный URL" };
@@ -77,27 +82,44 @@ function validateAll(method, item) {
         }
         return false;
       }
-      if (!dateIsValidate(this.value))
+      if (!dateIsValidate(this.item.value))
         return { state: false, message: "Неверная дата. Пример: 21.02.2019" };
       else return { state: true, message: "Хорошо" };
     }
     visitors() {
-      if (!this.value.length) return { state: false, message: "Поле пустое" };
-      else if (!/^[0-9]+$/.test(this.value))
+      if (!this.item.value.length) return { state: false, message: "Поле пустое" };
+      else if (!/^[0-9]+$/.test(this.item.value))
         return { state: false, message: "Только число" };
-      else if (+this.value > 10 ** 9)
+      else if (+this.item.value > 10 ** 9)
         return { state: false, message: "Слишком многовато" };
       else return { state: true, message: "Хорошо" };
     }
     email() {
-      if (!this.value.length) return { state: false, message: "Поле пустое" };
+      if (!this.item.value.length) return { state: false, message: "Поле пустое" };
       else if (
         !/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(
-          this.value
+          this.item.value
         )
       )
-        return { state: false, message: "Недопустимые символы" };
+      return { state: false, message: "Неверный email" };
       else return { state: true, message: "Хорошо" };
+    }
+    license() {
+      if(!this.item.checked) return {state: false, message: "✘"}
+      else return {state: true, message: "✔"}
+    }
+    payment() {
+      let radioArr = this.item.querySelectorAll("input");
+      for(let i=0;i<radioArr.length;i++) {
+        if(radioArr[i].id == "radio-vip" && radioArr[i].checked) return {state: false, message: "К сожалению недоступно"}        
+      }
+      return {state: true, message: "Доступно"}      
+    }
+    description() {
+      if(this.item.value.length < 30) {
+        return {state: false, message: "Длина описания < 30 символов"}        
+      }
+      return {state: true, message: "Прекрасно"} 
     }
   }
   function showMessage(item, state, text) {
@@ -113,7 +135,7 @@ function validateAll(method, item) {
     item.appendChild(spanState);
   }
   let parent = item.parentNode;
-  let validate = new Validate(item.value);
+  let validate = new Validate(item);
   let result = validate[method]();
   if (result.state) {
     showMessage(parent, "success", result.message);
@@ -123,14 +145,14 @@ function validateAll(method, item) {
   return result.state;
 }
 for (let key in inputs) {
-  inputs[key].addEventListener("change", function() {
-    validateAll(key, this);
-  });
+    inputs[key].addEventListener("change", function() {
+      validateAll(key, this);
+    });
 }
 submitButton.onclick = function() {
   let result = true;
   for (let key in inputs) {
-    result *= validateAll(key, inputs[key]);
+      result *= validateAll(key, inputs[key]);
   }
   return Boolean(result);
 };

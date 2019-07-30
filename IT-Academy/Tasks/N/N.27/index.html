@@ -34,6 +34,26 @@
         <p class="pre-title">Ваш email:</p>
         <input type="text" name="email" />
       </div>
+      <div class="form-block form__payment">
+        <p class="pre-title">Выберите тариф:</p>
+        <div class="payment-radio" style="display: inline-block;">
+          <input type="radio" value="free" name="payment" id="radio-free"/>
+          <label for="radio-free" class="custom-radio"><span>✔</span> Бесплатно</label>
+          <input type="radio" value="vip" name="payment" id="radio-vip"/>
+          <label for="radio-vip" class="custom-radio"><span>✔</span> VIP</label>
+          <input type="radio" value="pay" name="payment" id="radio-pay"/>
+          <label for="radio-pay" class="custom-radio"><span>✔</span> Платный</label>
+        </div>
+      </div>      
+      <div class="form-block form__license">
+        <input value="accept" type="checkbox" id="license-accept" name="license-accept" />
+        <label for="license-accept" class="custom-checkbox">✔</label>
+        <p class="pre-title license">Я принимаю лицензионное соглашение</p>
+      </div>
+      <div class="form-block form__description">
+        <p class="pre-title">Описание вашего сайта:</p>
+        <textarea name="description" id="description"></textarea>
+      </div>
       <input id="submit" type="submit">
     </form>
     <script src="app.js"></script>

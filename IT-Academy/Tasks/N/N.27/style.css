@@ -22,7 +22,7 @@ body {
   font-family: Montserrat; }
 
 form {
-  width: 450px;
+  width: 500px;
   border: 2px solid #ededed;
   border-radius: 20px;
   padding: 15px;
@@ -48,9 +48,34 @@ form {
     form .form-block .pre-title {
       margin-bottom: 10px;
       color: #518EFF;
-      font-size: 15px;
-      font-weight: medium; }
+      font-size: 15px; }
+      form .form-block .pre-title.license {
+        font-size: 13px;
+        display: inline-block; }
+    form .form-block label.custom-checkbox {
+      display: inline-block;
+      width: 13px;
+      height: 13px;
+      border: 1px solid #ededed;
+      border-radius: 50%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      font-size: 9px;
+      text-align: center;
+      line-height: 12px;
+      color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      cursor: pointer; }
+    form .form-block input[type="checkbox"] {
+      display: none; }
+      form .form-block input[type="checkbox"]:checked + label.custom-checkbox {
+        background: #518EFF;
+        color: #fff; }
     form .form-block input[type="text"] {
+      width: 40%;
       border: 1px solid #999;
       border-radius: 5px;
       margin-left: 10px;
@@ -64,6 +89,49 @@ form {
       form .form-block input[type="text"]:focus {
         outline: none;
         border: 1px solid #486BEB; }
+    form .form-block input[type="radio"] {
+      display: none; }
+      form .form-block input[type="radio"]:checked + label.custom-radio span {
+        background: #518EFF;
+        color: #fff; }
+    form .form-block .payment-radio {
+      padding: 5px 0; }
+      form .form-block .payment-radio label.custom-radio {
+        font-size: 13px;
+        font-weight: bold;
+        margin-right: 5px;
+        cursor: pointer; }
+        form .form-block .payment-radio label.custom-radio span {
+          display: inline-block;
+          width: 13px;
+          height: 13px;
+          font-weight: normal;
+          border: 1px solid #ededed;
+          border-radius: 50%;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          font-size: 9px;
+          text-align: center;
+          line-height: 12px;
+          color: transparent;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none; }
+    form .form-block textarea {
+      width: 100%;
+      height: 180px;
+      padding-bottom: 15px;
+      font-family: Montserrat;
+      font-size: 11px;
+      padding: 7px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border-radius: 10px;
+      border: 1px solid #999;
+      resize: none; }
+      form .form-block textarea:focus {
+        outline: none; }
   form input[type="submit"] {
     margin-top: 15px;
     width: 100px;
