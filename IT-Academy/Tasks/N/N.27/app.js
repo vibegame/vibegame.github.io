@@ -110,9 +110,12 @@ function validateAll(method, item) {
     }
     payment() {
       let radioArr = this.item.querySelectorAll("input");
+      let countChecked = false;
       for(let i=0;i<radioArr.length;i++) {
+        if(radioArr[i].checked) countChecked = true;
         if(radioArr[i].id == "radio-vip" && radioArr[i].checked) return {state: false, message: "К сожалению недоступно"}        
       }
+      if(!countChecked) return {state: false, message: "Вы не выбрали тариф!"} 
       return {state: true, message: "Доступно"}      
     }
     description() {
@@ -135,6 +138,7 @@ function validateAll(method, item) {
     item.appendChild(spanState);
   }
   let parent = item.parentNode;
+  let typeItem = item.type;
   let validate = new Validate(item);
   let result = validate[method]();
   if (result.state) {
@@ -145,9 +149,16 @@ function validateAll(method, item) {
   return result.state;
 }
 for (let key in inputs) {
-    inputs[key].addEventListener("change", function() {
-      validateAll(key, this);
-    });
+    switch(inputs[key].type)  {
+        case "text": inputs[key].addEventListener("blur", function() {
+                          validateAll(key, this);
+                          });
+                          break;
+        default:     inputs[key].addEventListener("change", function() {
+                          validateAll(key, this);
+                          });
+                          break; 
+    }
 }
 submitButton.onclick = function() {
   let result = true;
