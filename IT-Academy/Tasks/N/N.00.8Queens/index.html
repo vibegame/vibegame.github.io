@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>N.03 - Anketa</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+
+    }
+    .board {
+        margin: auto;
+        height: 516px;
+        width: 516px;
+    }
+    .row {
+        display: flex;
+        width: 100%;
+        height: calc(500px/8);
+        border: 1px solid #333;
+    }
+    .column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: calc(500px/8);
+        border: 1px solid #333;
+        background: #fff;        
+    }
+    .queen {
+        width: 30px;
+        height: 30px;
+        background: red;
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <script src="app.js"></script>
+</body>
+</html>
