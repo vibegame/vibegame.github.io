@@ -1,9 +1,9 @@
-function solveQueens(n) {
+function solveQueens() {
   const SIZE = 8;
   let countSolutions = 0;
-  var queens = [];
-  var grid = [];
-  for (var c = 0; c < SIZE; c++) queens[c] = 0;
+  let queens = [];
+  let grid = [];
+  for (let i = 0; i < SIZE; i++) queens[i] = 0;
   function solve(n) {
     if (n >= SIZE) {
       grid.push(queens.slice());
@@ -19,21 +19,20 @@ function solveQueens(n) {
       }
     }
   }
-  function translator(grid) {
-    let result = [];
-    for (let i = 0; i < grid.length; i++) {
-      result.push([i, grid[i]]);
-    }
-    result.sort((elem1, elem2) => {
-      return elem1[1] - elem2[1];
-    });
-    return result;
-  }
   solve(0);
-  n %= countSolutions;
-  if(n<1) n = 1;
-  return { countSolutions: countSolutions, queens: translator(grid[n - 1]) };
+  return { countSolutions: countSolutions, queens: grid };
 }
+function translator(grid) {
+  let result = [];
+  for (let i = 0; i < grid.length; i++) {
+    result.push([i, grid[i]]);
+  }
+  result.sort((elem1, elem2) => {
+    return elem1[1] - elem2[1];
+  });
+  return result;
+}
+
 function buildBoard(grid) {
   const SIZE = 8;
   function cE(className) {
@@ -64,10 +63,18 @@ function buildBoard(grid) {
   return board;
 }
 
-document.getElementById("state-board").addEventListener("change", function() {
-  function isNumber(n) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
-  if(!isNumber(this.value)) { alert("Введите число"); return false; }
-  let solution = solveQueens(+this.value);
-  document.body.appendChild(buildBoard(solution.queens));
-  console.log("Количество решений: " + solution.countSolutions);
+let solution = solveQueens();
+alert("Количество решений - " + solution.countSolutions);
+document.getElementById("call__new").addEventListener("click", function() {
+    let n = +prompt("Номер расстановки: ");
+    if(n < 1) n = 1;
+    n %= solution.countSolutions;
+    try {
+        document.body.appendChild(buildBoard(translator(solution.queens[n-1])));
+    } catch(e) {
+      alert("Вы ввели некорректные данные!");
+    }
+    
+    return true;
 });
+

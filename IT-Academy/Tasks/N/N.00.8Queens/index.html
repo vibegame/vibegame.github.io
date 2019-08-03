@@ -12,9 +12,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         height: 100vh;
         width: 100vw;
-
     }
     .board {
         margin: auto;
@@ -42,9 +42,26 @@
         background: red;
         border-radius: 50%;
     }
+    #call__new {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 230px;
+        height: 60px;
+        font-family: Tahoma;
+        font-size: 13px;
+        font-weight: bold;
+        background: #5191EB;
+        color: #fff;
+        cursor: pointer;
+        transition: .3s
+    }
+    #call__new:hover {
+        background: #5166EB;
+    }
 </style>
 <body>
-    <input type="text" id="state-board">
+    <a id="call__new">Хочу новую расстановку!</a>
     <script src="app.js"></script>
 </body>
 </html>
