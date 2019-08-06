@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #8FC4FF;
+
+}
+h1 {
+    text-align: center;
+    line-height: 100vh;
+    font-family: Arial;
+}
+
+#board {
+    box-sizing: border-box;
+    position: relative;
+    width: 700px;
+    height: 700px;
+    background-color: #fff;
+    background-image: url(board.jpg);
+    background-size: cover;
+}
+#chess {
+    position: absolute;
+    z-index: 99999;
+    width: 55px;
+    height: 55px;
+    top: 89px;
+    left: 89px;
+    transform: translate(-50%, -50%);
+    background-image: url(chess.png);
+    background-size: cover;
+    border-radius: 50%;
+    background-position: center;
+}
+.flag {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    background: #A55FFF;
+    border-radius: 50%;
+}
+
+
+.board-ask {
+    width: 416px;
+    height: 416px;
+    border: 1px solid #000;
+    background: #fff; 
+}
+.column-ask {
+    display: flex;
+    width: 100%;
+    height: calc(400px/8);
+    border: 1px solid #000;
+}
+.row-ask {
+    width: calc(400px/8);
+    height: 100%;
+    border: 1px solid #000;
+}
+.row-ask:hover {
+    background: #ededed;
+    cursor: pointer;
+}
