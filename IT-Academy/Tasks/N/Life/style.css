@@ -1,0 +1,48 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+.field {
+    position: relative;
+    width: 80vmin;
+    height: 80vmin;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: center;
+    transition: width .3s linear;
+}
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 20px;
+    font-family: Tahoma;
+}
+h1 {
+    font-weight: bold;
+    font-size: 23px;
+}
+.btn {
+    width: 200px;
+    height: 60px;
+    background-color: #667743;
+    color: #fff;
+    font-size: 14px;
+    font-family: Tahoma;
+    text-align: center;
+    line-height: 60px;
+    margin: 10px 10px;
+    cursor: pointer;
+}
