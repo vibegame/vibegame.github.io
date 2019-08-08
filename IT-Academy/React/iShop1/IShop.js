@@ -13,6 +13,7 @@ var IShop = React.createClass({
         });
         return React.DOM.div({className: "IShop"}, 
         React.DOM.h1({className:"Header"}, this.props.name),
-        React.DOM.div({className: "Goods"}, goods));
+        React.DOM.div({className: "Goods"}, goods),
+        );
     }
 });
