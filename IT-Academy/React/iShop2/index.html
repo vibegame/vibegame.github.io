@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iShop1</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+
+    <script src="IShop.js"></script>
+    <link rel="stylesheet" type="text/css" href="IShop.css" />
+    <link rel="stylesheet" href="Product.css">
+    <script src="Product.js"></script>
+    <script>
+        var shopName = "iShop";
+        var goods = [
+            {
+                name: "Milk",
+                price: 2.19,
+                count: 119,
+                currency: "BYN",
+            },
+            {
+                name: "Coffee",
+                price: 5.93,
+                count: 31,
+                currency: "BYN"
+            },
+            {
+                name: "Chocolate",
+                price: 1.23,
+                count: 1928,
+                currency: "USD"
+            },
+            {
+                name: "Tea",
+                price: 1.13,
+                count: 5523,
+                currency: "EUR"
+            },
+        ];
+        ReactDOM.render(
+            React.createElement(IShop, {goods: goods, name: shopName}),
+            document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
