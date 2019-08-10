@@ -19,3 +19,8 @@ input[type="text"] {
     background-color: #333;
     color: #fff;
 }
+.info {
+    font-family: Tahoma;
+    font-weight: bold;
+    font-size: 12px;
+}

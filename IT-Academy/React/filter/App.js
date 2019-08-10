@@ -7,50 +7,67 @@ var App = React.createClass({
         return {
             strInfo: arrStr,
             strInfoChanged: arrStr,
-            strDefault: "",
-            strSort: false
+            strNow: "",
+            strSort: false,
         }
+    },
+    processList: function () {
+        let arrStr = this.props.arrStr.slice();
+        arrStr = arrStr.filter(element => {
+            if (element.toLowerCase().indexOf(this.state.strNow) >= 0) return true;
+        });
+        if (this.state.strSort)
+            arrStr.sort();
+        this.setState({strInfoChanged: arrStr});
     },
     strChange: function (EO) {
         let str = EO.target.value.toLowerCase();
         this.setState({
-            strInfoChanged: this.state.strInfo.filter(element => {
-                if (element.toLowerCase().indexOf(str) >= 0) return true;
-            })
-        });
-        this.setState({
-            strDefault: str
-        });
+            strNow: str
+        }, this.processList);
     },
-    strReset: function () {
+    reset: function () {
         this.setState({
-            strDefault: "",
+            strNow: "",
             strInfoChanged: this.state.strInfo,
             strSort: false
         });
     },
-    sortStr: function (EO) {
+    needSort: function (EO) {
         this.setState({
             strSort: EO.target.checked
+        }, this.processList);
+    },
+    createList: function () {
+        let text = [];
+        this.state.strInfoChanged.forEach(element => {
+            text.push(React.DOM.span({
+                key: element
+            }, element));
+            text.push(React.DOM.br({
+                key: element + "-br"
+            }));
         });
+        return text;
     },
     render() {
         return React.DOM.div({
-            className: "App"
-        }, React.DOM.input({
-            type: "checkbox",
-            onChange: this.sortStr,
-            checked: this.state.strSort
-        }), React.DOM.input({
-            type: "text",
-            onChange: this.strChange,
-            value: this.state.strDefault
-        }), React.DOM.div({
-            className: "btn reset",
-            onClick: this.strReset
-        }, "Reset"), React.createElement(Info, {
-            arrStr: this.state.strInfoChanged,
-            strSort: this.state.strSort
-        }));
+                className: "App"
+            }, React.DOM.input({
+                type: "checkbox",
+                onChange: this.needSort,
+                checked: this.state.strSort
+            }), React.DOM.input({
+                type: "text",
+                onChange: this.strChange,
+                value: this.state.strNow
+            }), React.DOM.div({
+                className: "btn reset",
+                onClick: this.reset
+            }, "Reset"),
+            React.DOM.div({
+                className: "info"
+            }, this.createList())
+        );
     }
 });
