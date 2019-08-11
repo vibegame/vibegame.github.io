@@ -5,6 +5,7 @@
 body {
   width: 100%;
   height: 9000px;
+  overflow-x: hidden;
 }
 img {
   display: inline-block;

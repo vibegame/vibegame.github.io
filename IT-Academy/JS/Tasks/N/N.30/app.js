@@ -31,14 +31,6 @@ function MovingImage(elems) {
     self.clickedElement.style.left = event.pageX - images.offsetX + "px";
     self.clickedElement.style.top = event.pageY - images.offsetY + "px";
   }
-  self.leave = function (event) {
-    event.preventDefault();
-    if (!self.clickedDown) return false;
-    self.clickedDown = false;
-    self.lastClickedElement = self.clickedElement;
-    self.clickedElement.style.cursor = "grab";
-    self.clickedElement = null;
-  }
   elems.forEach(element => { // стандрантные настройки для элементов
     element.style.position = "absolute";
     element.addEventListener("mousedown", self.down);
@@ -48,5 +40,10 @@ function MovingImage(elems) {
   document.body.addEventListener("mousemove", function (event) {
     event.preventDefault();
     self.move(event);
+  });
+  document.body.addEventListener("mouseleave", function (event) {
+    console.log("1");
+    event.preventDefault();
+    self.up(event);
   });
 }
