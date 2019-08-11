@@ -13,17 +13,17 @@ var App = React.createClass({
     },
     processList: function () {
         let arrStr = this.props.arrStr.slice();
+        let str = this.state.strNow.toLowerCase();
         arrStr = arrStr.filter(element => {
-            if (element.toLowerCase().indexOf(this.state.strNow) >= 0) return true;
+            if (element.toLowerCase().indexOf(str) >= 0) return true;
         });
         if (this.state.strSort)
             arrStr.sort();
         this.setState({strInfoChanged: arrStr});
     },
     strChange: function (EO) {
-        let str = EO.target.value.toLowerCase();
         this.setState({
-            strNow: str
+            strNow: EO.target.value
         }, this.processList);
     },
     reset: function () {

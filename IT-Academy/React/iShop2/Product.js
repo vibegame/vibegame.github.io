@@ -16,12 +16,12 @@ var Product = React.createClass({
     deleteItem: function(product) {
         let answer = confirm(`Вы действительно хотите удалить ${product.name}?`);
         if(answer)
-            this.props.cbDeleteItem(product.name);
+            this.props.cbDeleteItem(product.id);
     },
     render: function () {
         return React.DOM.div({
                 className: this.props.product.name,
-                key: this.props.product.name,
+                key: this.props.product.id,
                 onClick: this.highlight
             },
             React.DOM.h2({

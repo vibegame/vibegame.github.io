@@ -14,10 +14,10 @@ var IShop = React.createClass({
                 this.state.lastElementHighlighted.classList.remove("highlight");
         });
     },
-    cbDeleteItem: function(name) {
+    cbDeleteItem: function(id) {
         var newGoods = this.state.goods.slice();
         newGoods = newGoods.filter(product => {
-            return product.name != name;
+            return product.id != id;
         });
         this.setState({goods: newGoods});        
     },
