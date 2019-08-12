@@ -8,10 +8,10 @@ var Product = React.createClass({
     highlight: function (EO) {
         let element = EO.currentTarget;
         let product = this.props.product;
-        if(!EO.target.classList.contains("Delete"))
-            this.props.cbHighlight(element);
-        else
+        if(EO.target.classList.contains("Delete"))
             this.deleteItem(product);
+        else
+            this.props.cbHighlight(element);
     },
     deleteItem: function(product) {
         let answer = confirm(`Вы действительно хотите удалить ${product.name}?`);
