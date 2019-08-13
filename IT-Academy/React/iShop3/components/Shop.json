@@ -1,0 +1,25 @@
+{
+    "shopName": "iShop",
+    "goods": [
+        {
+            "name": "Milk",
+            "price": 2.19,
+            "id": 88832
+        },
+        {
+            "name": "Coffee",
+            "price": 5.93,
+            "id": 21321
+        },
+        {
+            "name": "Chocolate",
+            "price": 1.23,
+            "id": 19221
+        },
+        {
+            "name": "Tea",
+            "price": 1.13,
+            "id": 31292
+        }
+    ]
+}
