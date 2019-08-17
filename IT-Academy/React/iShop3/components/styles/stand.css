@@ -9,3 +9,15 @@ body {
     display: flex;
     justify-content: center;
 }
+input[type="text"] {
+    outline: none;
+    border: 0;
+}
+input[type="text"]:focus {
+    outline: none;
+    border: 0;
+}
+input[type="text"]:active {
+    outline: none;
+    border: 0;
+}
