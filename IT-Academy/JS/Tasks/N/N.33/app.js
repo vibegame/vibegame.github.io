@@ -1,26 +1,18 @@
 const clock = document.getElementById("clock");
-const clocksMini = {
-    second: {element: clock.querySelector(".clock-mini.clock-second"), n: 12, radius: 63},
-    minute: {element: clock.querySelector(".clock-mini.clock-minute"), n: 12, radius: 63},
-    hour: {element: clock.querySelector(".clock-mini.clock-hour"), n: 12, radius: 63},
+const clockMini = {
+    element: clock.querySelector(".clock-mini"), 
+    n: 12, 
+    radius: 85
 }
+let defaulTransformArrow = 'translate(-50%, -100%)';
+const arrows = {
+    hour: {element: clockMini.element.querySelector(".arrow.arrow-hour"), rotate: 90},
+    minute: {element: clockMini.element.querySelector(".arrow.arrow-minute"), rotate: 0},
+    second: {element: clockMini.element.querySelector(".arrow.arrow-second"), rotate: 0},
+}
+
 const clockNumber = clock.querySelector(".clock-number");
 const time = clock.querySelector(".time");
-const defaultRotate = 270;
-const arrows = {
-    second: {
-        element: clocksMini.second.element.querySelector(".arrow.arrow-second"),
-        rotate: defaultRotate
-    },
-    minute: {
-        element: clocksMini.minute.element.querySelector(".arrow.arrow-minute"),
-        rotate: defaultRotate
-    },
-    hour: {
-        element: clocksMini.hour.element.querySelector(".arrow.arrow-hour"),
-        rotate: defaultRotate
-    }
-}
 
 function renderClock(parent, radius, n, name) {
 
@@ -40,18 +32,13 @@ function renderClock(parent, radius, n, name) {
     }
 
 }
-
 function rotate() {
-    arrows.second.element.style.transform = `rotate(${(arrows.second.rotate + defaultRotate)%360}deg)`;
-    arrows.minute.element.style.transform = `rotate(${(arrows.minute.rotate + defaultRotate)%360}deg)`;
-    arrows.hour.element.style.transform = `rotate(${(arrows.hour.rotate + defaultRotate)%360}deg)`;
+    if(arrows.second.rotate<=361 && arrows.second.rotate>=358) arrows.second.element.classList.add("not-animated");
+    else arrows.second.element.classList.remove("not-animated");
+    arrows.second.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.second.rotate)}deg)`;
+    arrows.minute.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.minute.rotate)}deg)`;
+    arrows.hour.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.hour.rotate)}deg)`;
 }
-renderClock(clocksMini.hour.element, clocksMini.hour.radius, clocksMini.hour.n, "number");
-renderClock(clocksMini.minute.element, clocksMini.minute.radius, clocksMini.minute.n, "number");
-renderClock(clocksMini.second.element, clocksMini.second.radius, clocksMini.second.n, "number");
-rotate();
-tick();
-
 function timeTransp(second, minute, hour) {
     var strTime = "";
     if (hour < 10) strTime += `0${hour}:`;
@@ -62,7 +49,6 @@ function timeTransp(second, minute, hour) {
     else strTime += `${second}`;
     return strTime;
 }
-
 function tick() {
     let date = new Date();
     let milisec = date.getMilliseconds();
@@ -75,4 +61,5 @@ function tick() {
     time.innerHTML = timeTransp(second, minute, hour);
     rotate();
 }
+renderClock(clockMini.element, clockMini.radius, clockMini.n, "number");
 setInterval(tick, 100);

@@ -12,8 +12,8 @@ body {
 }
 #clock {
     position: relative;
-    width: 600px;
-    height: 350px;
+    width: 350px;
+    height: 450px;
     border: 2px solid #666;
     border-top-left-radius: 35px;
     border-top-right-radius: 35px;
@@ -21,76 +21,59 @@ body {
 }
 .clock-mini {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    background: #DBD261;
+    background: #00A5CF;
     color: #fff;
     transform: translateX(-50%);
-    left: 20%;
-    top: 40px;
-}
-.clock-mini:nth-child(2) {
-    background: #DB6377;
     left: 50%;
-}
-.clock-mini:nth-child(3) {
-    background: #64DB76;
-    left: 80%;
+    top: 80px;
 }
 .clock-mini .arrow {
     position: absolute;
-    width: 34%;
-    height: 2px;
+    width: 1px;
+    height: 42%;
     background: #5154DB;
-    transform-origin: 0;
+    transform-origin: 50% 100%;
+    transform: translate(-50%, -100%);
     left: 50%;
     top: 50%;
+    z-index: 3;
 }
-.clock-mini:nth-child(2) .arrow {
+.clock-mini .arrow.arrow-second.not-animated {
+    transition: 0s;
+}
+.clock-mini .arrow.arrow-minute {
+    width: 2px;
+    height: 37%;
+    background: #EB2570;
+}
+.clock-mini .arrow.arrow-hour {
+    width: 3px;
+    height: 37%;
     background: #9800E6;
 }
-.clock-mini:nth-child(3) .arrow {
-    background: #00B3E6;
-}
-.clock-mini .arrow:before,
-.clock-mini .arrow:after {
-    content: "";
-    position: absolute;
-    width: 7px;
-    height: 1px;
-    background: #333;
-    right: 0;
-    top: 50%;
-    transform-origin: 100%;
-    transform: rotate(30deg);
-}
 
-.clock-mini h3 {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.clock-mini .arrow-second {
-    transition: .1s;
-}
-.clock-mini .arrow-second {
-    transition: .1s;
-}
-.clock-mini .arrow-second {
-    transition: .1s;
-}
-
-.clock-mini .arrow:before {
-    transform: rotate(-20deg);
+.clock-mini .arrow {
+    transition: .2s;
 }
 .clock-mini .number {
     position: absolute;
 }
+.clock-mini .center {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    left: 50%;
+    top: 50%;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+
 .clock-number {
     display: flex;
     justify-content: center;
