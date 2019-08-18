@@ -40,20 +40,22 @@ body {
     left: 50%;
     top: 50%;
     z-index: 3;
-    
 }
 .clock-mini .arrow.arrow-minute {
     width: 2px;
-    height: 37%;
+    height: 33%;
     background: #EB2570;
 }
 .clock-mini .arrow.arrow-hour {
     width: 3px;
-    height: 37%;
+    height: 25%;
     background: #9800E6;
 }
 .clock-mini .arrow {
     transition: 1s;
+}
+.clock-mini .arrow.dur {
+    transition: 0s;
 }
 .clock-mini .number {
     position: absolute;
