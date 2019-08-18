@@ -33,8 +33,6 @@ function renderClock(parent, radius, n, name) {
 
 }
 function rotate() {
-    if(arrows.second.rotate<=361 && arrows.second.rotate>=358) arrows.second.element.classList.add("not-animated");
-    else arrows.second.element.classList.remove("not-animated");
     arrows.second.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.second.rotate)}deg)`;
     arrows.minute.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.minute.rotate)}deg)`;
     arrows.hour.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.hour.rotate)}deg)`;
