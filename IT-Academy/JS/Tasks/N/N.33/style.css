@@ -40,9 +40,7 @@ body {
     left: 50%;
     top: 50%;
     z-index: 3;
-}
-.clock-mini .arrow.arrow-second.not-animated {
-    transition: 0s;
+    
 }
 .clock-mini .arrow.arrow-minute {
     width: 2px;
@@ -54,9 +52,8 @@ body {
     height: 37%;
     background: #9800E6;
 }
-
 .clock-mini .arrow {
-    transition: .2s;
+    transition: 1s;
 }
 .clock-mini .number {
     position: absolute;

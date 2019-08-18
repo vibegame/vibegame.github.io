@@ -60,4 +60,12 @@ function tick() {
     rotate();
 }
 renderClock(clockMini.element, clockMini.radius, clockMini.n, "number");
-setInterval(tick, 100);
+let date = new Date();
+let milisec = date.getMilliseconds();
+during = 1000 - milisec;
+tick();
+setTimeout(function() {
+    setInterval(tick, 1000);
+}, during);
+
+
