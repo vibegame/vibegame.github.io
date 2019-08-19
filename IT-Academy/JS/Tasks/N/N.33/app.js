@@ -53,22 +53,21 @@ function tick() {
     let minute = date.getMinutes();
     let second = date.getSeconds();
     let hour = date.getHours();
+    during = 1000 - milisec;
     arrows.second.rotate = (second + milisec / 1000) / 60 * 360;
     arrows.minute.rotate = (minute + (second + milisec / 1000) / 60) / 60 * 360;
     arrows.hour.rotate = (hour + minute/60) / 12  * 360;
     time.innerHTML = timeTransp(second, minute, hour);
     rotate();
+    if(during < 900) console.warn("WARNING during = " + during);
+    setTimeout(tick, during);
 }
 function start() {
     renderClock(clockMini.element, clockMini.radius, clockMini.n, "number");
-    tick();
     let date = new Date();
     let milisec = date.getMilliseconds();
     during = 1000 - milisec;
-    setTimeout(function() {
-        tick();
-        setInterval(tick, 1000);
-    }, during);
+    setTimeout(tick, during);
 }
 start();
 
