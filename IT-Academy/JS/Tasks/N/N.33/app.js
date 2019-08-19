@@ -33,8 +33,6 @@ function renderClock(parent, radius, n, name) {
 
 }
 function rotate() {
-    if(arrows.second.rotate <= 6) { arrows.second.element.classList.add("dur"); console.log("yes");}
-    else arrows.second.element.classList.remove("dur");
     arrows.second.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.second.rotate)}deg)`;
     arrows.minute.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.minute.rotate)}deg)`;
     arrows.hour.element.style.transform = `${defaulTransformArrow} rotate(${(arrows.hour.rotate)}deg)`;
@@ -61,13 +59,18 @@ function tick() {
     time.innerHTML = timeTransp(second, minute, hour);
     rotate();
 }
-renderClock(clockMini.element, clockMini.radius, clockMini.n, "number");
-let date = new Date();
-let milisec = date.getMilliseconds();
-during = 1000 - milisec;
-tick();
-setTimeout(function() {
-    setInterval(tick, 1000);
-}, during);
+function start() {
+    renderClock(clockMini.element, clockMini.radius, clockMini.n, "number");
+    tick();
+    let date = new Date();
+    let milisec = date.getMilliseconds();
+    during = 1000 - milisec;
+    setTimeout(function() {
+        tick();
+        setInterval(tick, 1000);
+    }, during);
+}
+start();
+
 
 

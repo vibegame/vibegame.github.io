@@ -51,12 +51,6 @@ body {
     height: 25%;
     background: #9800E6;
 }
-.clock-mini .arrow {
-    transition: 1s;
-}
-.clock-mini .arrow.dur {
-    transition: 0s;
-}
 .clock-mini .number {
     position: absolute;
 }
