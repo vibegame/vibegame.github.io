@@ -53,29 +53,17 @@ function tick() {
     let minute = date.getMinutes();
     let second = date.getSeconds();
     let hour = date.getHours();
-    during = 1000 - milisec;
     arrows.second.rotate = (second + milisec / 1000) / 60 * 360;
     arrows.minute.rotate = (minute + (second + milisec / 1000) / 60) / 60 * 360;
     arrows.hour.rotate = (hour + minute/60) / 12  * 360;
     time.innerHTML = timeTransp(second, minute, hour);
     rotate();
-    if(during < 900) console.warn("WARNING during = " + during);
+    during = 1000 - milisec;
     setTimeout(tick, during);
 }
 function start() {
     renderClock(clockMini.element, clockMini.radius, clockMini.n, "number");
-    let date = new Date();
-    let milisec = date.getMilliseconds();
-    let minute = date.getMinutes();
-    let second = date.getSeconds();
-    let hour = date.getHours();
-    arrows.second.rotate = (second + milisec / 1000) / 60 * 360;
-    arrows.minute.rotate = (minute + (second + milisec / 1000) / 60) / 60 * 360;
-    arrows.hour.rotate = (hour + minute/60) / 12  * 360;
-    time.innerHTML = timeTransp(second, minute, hour);
-    rotate();
-    during = 1000 - milisec;
-    setTimeout(tick, during);
+    tick();
 }
 start();
 
