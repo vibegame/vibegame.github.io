@@ -6,7 +6,7 @@ const clockMini = {
 }
 let defaulTransformArrow = 'translate(-50%, -100%)';
 const arrows = {
-    hour: {element: clockMini.element.querySelector(".arrow.arrow-hour"), rotate: 90},
+    hour: {element: clockMini.element.querySelector(".arrow.arrow-hour"), rotate: 0},
     minute: {element: clockMini.element.querySelector(".arrow.arrow-minute"), rotate: 0},
     second: {element: clockMini.element.querySelector(".arrow.arrow-second"), rotate: 0},
 }
@@ -23,9 +23,8 @@ function renderClock(parent, radius, n, name) {
         element.innerHTML = i + 1;
         element.className = name;
         parent.appendChild(element);
-
-        elementCenterX = element.offsetLeft + parent.offsetWidth / 2 + radius * Math.sin(angle * (i + 1));
-        elementCenterY = element.offsetTop + parent.offsetHeight / 2 - radius * Math.cos(angle * (i + 1));
+        elementCenterX = parent.offsetWidth / 2 + radius * Math.sin(angle * (i + 1));
+        elementCenterY = parent.offsetHeight / 2 - radius * Math.cos(angle * (i + 1));
 
         element.style.left = Math.round(elementCenterX - element.offsetWidth / 2) + 'px';
         element.style.top = Math.round(elementCenterY - element.offsetHeight / 2) + 'px';
