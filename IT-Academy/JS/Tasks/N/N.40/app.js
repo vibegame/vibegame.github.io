@@ -19,14 +19,14 @@ const SETTINGS = {
             }
         },
         arrows: {
-            second: {rotate: 0, width: 2, height: 180, color: "#FACB01"},
-            minute: {rotate: 0, width: 3, height: 130, color: "#0CE815"},
-            hour: {rotate: 0, width: 6, height: 90, color: "#009DFF"}
+            second: {rotate: 0, width: 2, height: 210, color: "#FACB01"},
+            minute: {rotate: 0, width: 3, height: 170, color: "#0CE815"},
+            hour: {rotate: 0, width: 6, height: 120, color: "#009DFF"}
         },
         miniClock: {
             size: "32px",
             family: "sans-serif",
-            color: "#E4FAEA",
+            color: "#FFA405",
             marginTop: 50,
             marginLeft: 0
         }
@@ -36,8 +36,16 @@ function drawClock() {
     ctx.fillStyle = SETTINGS.clock.fillStyle;
     ctx.beginPath();
     ctx.arc(SETTINGS.clock.width / 2, SETTINGS.clock.height / 2, SETTINGS.clock.radius, 0, Math.PI * 2, true);
+    ctx.arc(SETTINGS.clock.width / 2, SETTINGS.clock.height / 2, 20, 0, Math.PI * 2, true);
     ctx.fill();
     ctx.closePath();
+}
+function drawCenterCircle() {
+    ctx.fillStyle = "#ffffff";
+    ctx.beginPath();
+    ctx.arc(SETTINGS.clock.width / 2, SETTINGS.clock.height / 2, 10, 0, Math.PI * 2, true);
+    ctx.fill();
+    ctx.closePath();    
 }
 function renderNumbers(n) {
     let angle = 2 * Math.PI / n;
@@ -76,7 +84,7 @@ function renderArrows() {
 
     let centerX = SETTINGS.clock.width / 2;
     let centerY = SETTINGS.clock.height / 2;
-
+    ctx.lineCap = 'round';
     drawSecond = () => {
         secondEndX = centerX + SETTINGS.clock.arrows.second.height * Math.sin(SETTINGS.clock.arrows.second.rotate);
         secondEndY = centerY - SETTINGS.clock.arrows.second.height * Math.cos(SETTINGS.clock.arrows.second.rotate);
@@ -137,7 +145,6 @@ function renderMiniClock() {
 
     return function(second, minute, hour) {
         transpText = timeTransp(second, minute, hour);
-        ctx.fillStyle = SETTINGS.clock.miniClock.color;
         ctx.beginPath();
             ctx.fillStyle = SETTINGS.clock.miniClock.color;
             ctx.font = `${SETTINGS.clock.miniClock.size} ${SETTINGS.clock.miniClock.family}`;
@@ -147,30 +154,31 @@ function renderMiniClock() {
         ctx.closePath();
     }
 }
-let clearCVS = () => {
-    ctx.fillRect(0, 0, cvs.width, cvs.height);
-}
-function tick() {
-    let date = new Date();
-    let milisec = date.getMilliseconds();
-    let minute = date.getMinutes();
-    let second = date.getSeconds();
-    let hour = date.getHours();
-    SETTINGS.clock.arrows.second.rotate = (second + milisec / 1000) / 60 * 2 * Math.PI;
-    SETTINGS.clock.arrows.minute.rotate = (minute + second / 60) / 60 * 2 * Math.PI;
-    SETTINGS.clock.arrows.hour.rotate = (hour + minute/60) / 12 * 2 * Math.PI;
-    clearCVS();
-    drawClock();
-    drawNumbers();
-    drawArrows();
-    drawMiniClock(second, minute, hour);
-    during = 1000 - milisec;
-    setTimeout(tick, during);
+function clearCVS() {
+    ctx.clearRect(0, 0, 1000, 1000);
 }
 function start() {
     drawNumbers = renderNumbers(12);
     drawArrows = renderArrows();
     drawMiniClock = renderMiniClock();
+    function tick() {
+        let date = new Date();
+        let milisec = date.getMilliseconds();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+        let hour = date.getHours();
+        SETTINGS.clock.arrows.second.rotate = (second + milisec / 1000) / 60 * 2 * Math.PI;
+        SETTINGS.clock.arrows.minute.rotate = (minute + second / 60) / 60 * 2 * Math.PI;
+        SETTINGS.clock.arrows.hour.rotate = (hour + minute/60) / 12 * 2 * Math.PI;
+        clearCVS();
+        drawClock();
+        drawNumbers();
+        drawArrows();
+        drawCenterCircle();
+        drawMiniClock(second, minute, hour);
+        during = 1000 - milisec;
+        setTimeout(tick, during);
+    }
     tick();
 }
 var drawNumbers, drawArrows, drawMiniClock;
