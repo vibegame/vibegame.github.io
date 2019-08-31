@@ -30,19 +30,22 @@ var settings = {
             width: 90,
             stroke: "#f00",
             strokeWidth: 3,
-            rotate: 0
+            rotate: 0,
+            strokeLinecap: "round"
         },
         minute: {
             width: 130,
             stroke: "#0f0",
             strokeWidth: 2,
-            rotate: 0
+            rotate: 0,
+            strokeLinecap: "round"
         },
         second: {
             width: 160,
             stroke: "#00f",
             strokeWidth: 1,
-            rotate: 0
+            rotate: 0,
+            strokeLinecap: "round"
         }
     },
     time: {
@@ -102,18 +105,21 @@ clock.setAttribute("height", settings.clock.height);
             hour.setAttribute("y2", self.settings.clock.radius - self.settings.arrows.hour.width);
             hour.setAttribute("stroke", self.settings.arrows.hour.stroke);
             hour.setAttribute("stroke-width", self.settings.arrows.hour.strokeWidth);
+            hour.setAttribute("stroke-linecap", self.settings.arrows.hour.strokeLinecap);
             minute.setAttribute("x1", self.settings.clock.radius);
             minute.setAttribute("y1", self.settings.clock.radius);
             minute.setAttribute("x2", self.settings.clock.radius);
             minute.setAttribute("y2", self.settings.clock.radius - self.settings.arrows.minute.width);
             minute.setAttribute("stroke", self.settings.arrows.minute.stroke);
             minute.setAttribute("stroke-width", self.settings.arrows.minute.strokeWidth);
+            minute.setAttribute("stroke-linecap", self.settings.arrows.minute.strokeLinecap);
             second.setAttribute("x1", self.settings.clock.radius);
             second.setAttribute("y1", self.settings.clock.radius);
             second.setAttribute("x2", self.settings.clock.radius);
             second.setAttribute("y2", self.settings.clock.radius - self.settings.arrows.second.width);
             second.setAttribute("stroke", self.settings.arrows.second.stroke);
             second.setAttribute("stroke-wdith", self.settings.arrows.second.strokeWidth);
+            second.setAttribute("stroke-linecap", self.settings.arrows.second.strokeLinecap);
             self.parent.appendChild(hour);
             self.parent.appendChild(minute);
             self.parent.appendChild(second);
