@@ -30,7 +30,7 @@ let checkWin = (a, b) => {
         return "Draw!";
 }
 window.onload = function () {
-    preLoaderLoading(2500);
+    preLoaderLoading(1000);
     btn.onclick = function () {
         if (btn.classList.contains("disable")) return;
         btn.classList.add("disable");
