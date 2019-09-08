@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #5C5F69;
+  font-family: 'Open Sans', sans-serif; }
+
+.Game .Board {
+  position: relative;
+  background-color: #041142; }
+  .Game .Board .racket {
+    position: absolute;
+    width: 14px;
+    height: 30%;
+    border-radius: 5px;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    top: 50%; }
+    .Game .Board .racket-1 {
+      left: 0;
+      background-color: #48ADFF; }
+    .Game .Board .racket-2 {
+      right: 0;
+      background-color: #FF8B53; }
+  .Game .Board .ball {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    background-color: #ffffff;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+
+.Game .score {
+  display: block;
+  color: #ffffff;
+  font-size: 50px;
+  text-align: center; }
+
+.Game .btn {
+  border: 0;
+  background-color: #fff;
+  padding: 13px 30px;
+  margin-bottom: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  outline: 0;
+  cursor: pointer; }
+  .Game .btn.disable {
+    background-color: #ededed;
+    color: #666;
+    cursor: not-allowed; }
+
+.pre-loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 999;
+  color: #51525C;
+  font-size: 50px; }
+  .pre-loader span {
+    -webkit-animation: blink 1s linear infinite;
+    animation: blink 1s linear infinite; }
+  .pre-loader .loader {
+    width: 70%;
+    height: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 3px solid #24A1F5;
+    overflow: hidden; }
+    .pre-loader .loader .line {
+      width: 30%;
+      height: 100%;
+      background-color: #86B6F5; }
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.4; }
+  100% {
+    opacity: 1; } }
+
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0.4; }
+  100% {
+    opacity: 1; } }
