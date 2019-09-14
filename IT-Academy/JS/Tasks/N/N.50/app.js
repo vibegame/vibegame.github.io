@@ -1,17 +1,14 @@
-const BOARD = document.getElementById("board");
-const BALL = BOARD.querySelector(".ball");
-const ROCKET_FIRST = BOARD.querySelector(".racket.racket-first");
-const ROCKET_SECOND = BOARD.querySelector(".racket.racket-second");
-
+const CANVAS = document.getElementById("canvas");
+const ctx = canvas.getContext('2d');
 const SCORE = document.querySelector(".actions .score");
 const BTN__REFRESHH = document.querySelector(".actions .btn.refresh");
 const TEXT_WINNER = document.querySelector(".actions .text-winner");
 
-
 let btn_refresh_disable = false;
 let STOP_GAME = false;
+
 function setDisable(dis) {
-    if(dis) {
+    if (dis) {
         BTN__REFRESHH.classList.add('disable');
         btn_refresh_disable = true;
     } else {
@@ -25,9 +22,6 @@ BTN__REFRESHH.addEventListener("click", function () {
     setDisable(true);
     renderStart();
 });
-
-
-
 let settings = {
     board: {
         width: 800,
@@ -78,6 +72,8 @@ let settings = {
 };
 
 function renderStart() {
+    settings.ball.speedX = Math.random()/2 + 1;
+    settings.ball.speedY = Math.random()/2 + 0.5;
     settings.rockets.first.x = 0;
     settings.rockets.second.x = settings.board.width - settings.rockets.second.width;
     settings.rockets.first.y = settings.board.height / 2 - settings.rockets.first.height / 2;
@@ -86,6 +82,7 @@ function renderStart() {
     settings.ball.y = settings.board.height / 2;
     render.update();
     render.board();
+    render.reRender();
     render.ball();
     render.rocket(1);
     render.rocket(2);
@@ -98,12 +95,18 @@ function renderStart() {
     animation = requestAnimationFrame(frame);
 }
 
+function stopGame(winner) {
+    let textWinner = winner == 1 ? `First person win!` : `Second person win!`;
+    setDisable(false);
+    STOP_GAME = true;
+    settings.textWinner.text = textWinner;
+    render.textWinner();
+    cancelAnimationFrame(animation);
+}
+
 function Render() {
 
-    this.BALL = BALL;
-    this.BOARD = BOARD;
-    this.ROCKET_FIRST = ROCKET_FIRST;
-    this.ROCKET_SECOND = ROCKET_SECOND;
+    this.CANVAS = CANVAS;
     this.SCORE = SCORE;
     this.TEXT_WINNER = TEXT_WINNER;
     this.settings = settings;
@@ -112,34 +115,39 @@ function Render() {
         this.settings = settings;
     }
 
-    this.board = function () {
-        let board = this.BOARD;
+    this.clear = function () {
         let settings = this.settings.board;
-        board.style.width = settings.width;
-        board.style.height = settings.height;
-        board.style.background = settings.color;
+        ctx.clearRect(0, 0, settings.width, settings.height);
+    }
+
+    this.board = function () {
+        let board = this.CANVAS;
+        let settings = this.settings.board;
+        board.width = `${settings.width}`;
+        board.height = `${settings.height}`;
+    }
+
+    this.ball = function () {
+        let settings = this.settings.ball;
+        ctx.beginPath();
+
+        ctx.fillStyle = settings.color;
+        ctx.arc(settings.x, settings.y, settings.radius, 0, 2 * Math.PI);
+
+        ctx.fill();
     }
 
 
-    this.ball = function () {
-        let ball = this.BALL;
-        let settings = this.settings.ball;
-        ball.setAttribute("cx", settings.x);
-        ball.setAttribute("cy", settings.y);
-        ball.setAttribute("r", settings.radius);
-        ball.setAttribute("fill", settings.color);
-    };
-
     this.rocket = function (n) {
-        let rocket = (n == 1 ? this.ROCKET_FIRST : this.ROCKET_SECOND);
         let settings = (n == 1 ? this.settings.rockets.first : this.settings.rockets.second);
-        rocket.setAttribute("x", settings.x);
-        rocket.setAttribute("y", settings.y);
-        rocket.setAttribute("width", settings.width);
-        rocket.setAttribute("height", settings.height);
-        rocket.setAttribute("fill", settings.color);
-        rocket.setAttribute("rx", settings.rx);
-        rocket.setAttribute("ry", settings.ry);
+
+        ctx.beginPath();
+
+        ctx.fillStyle = settings.color;
+        ctx.fillRect(settings.x, settings.y, settings.width, settings.height);
+
+        ctx.fill();
+
     };
 
     this.score = function () {
@@ -153,28 +161,29 @@ function Render() {
         let settings = this.settings.textWinner;
         textWinner.innerHTML = settings.text;
     }
+
+    this.reRender = function () {
+        let settings = this.settings;
+        this.clear();
+        ctx.fillStyle = settings.board.color;
+        ctx.fillRect(0, 0, settings.board.width, settings.board.height);
+    }
 }
 
-function stopGame(winner) {
-    let textWinner = winner == 1 ? `First person win!` : `Second person win!`;
-    setDisable(false);
-    STOP_GAME = true;
-    settings.textWinner.text = textWinner;
-    render.textWinner();
-    cancelAnimationFrame(animation);
-}
+let render = new Render();
 
-let frame = function () {
+let animation = requestAnimationFrame(frame);
+
+function frame() {
     settings.ball.x += settings.ball.speedX;
     settings.ball.y += settings.ball.speedY;
-    if(settings.rockets.first.y + settings.rockets.first.height >= settings.board.width && settings.rockets.first.speed > 0 ||
-       settings.rockets.first.y <= 0 && settings.rockets.first.speed < 0) 
-    {
+
+    if (settings.rockets.first.y + settings.rockets.first.height >= settings.board.width && settings.rockets.first.speed > 0 ||
+        settings.rockets.first.y <= 0 && settings.rockets.first.speed < 0) {
         settings.rockets.first.speed = 0;
     }
-    if(settings.rockets.second.y + settings.rockets.second.height >= settings.board.width && settings.rockets.second.speed > 0 ||
-       settings.rockets.second.y <= 0 && settings.rockets.second.speed < 0) 
-    {
+    if (settings.rockets.second.y + settings.rockets.second.height >= settings.board.width && settings.rockets.second.speed > 0 ||
+        settings.rockets.second.y <= 0 && settings.rockets.second.speed < 0) {
         settings.rockets.second.speed = 0;
     }
 
@@ -188,22 +197,20 @@ let frame = function () {
         settings.ball.speedY *= settings.ball.accelerationY;
     }
 
-    if (settings.ball.x - settings.ball.radius <= settings.rockets.first.width && 
+    if (settings.ball.x - settings.ball.radius <= settings.rockets.first.width &&
         settings.ball.y <= settings.rockets.first.y + settings.rockets.first.height + settings.ball.radius &&
         settings.ball.y >= settings.rockets.first.y - settings.ball.radius
-       ) 
-    {
-       settings.ball.speedX *= -1;
-       settings.ball.speedX *= settings.ball.accelerationX;
-       settings.score.first++;   
-       render.score();
+    ) {
+        settings.ball.speedX *= -1;
+        settings.ball.speedX *= settings.ball.accelerationX;
+        settings.score.first++;
+        render.score();
     }
 
     if (settings.ball.x + settings.ball.radius >= settings.board.width - settings.rockets.second.width &&
         settings.ball.y <= settings.rockets.second.y + settings.rockets.second.height + settings.ball.radius &&
         settings.ball.y >= settings.rockets.second.y - settings.ball.radius
-        ) 
-    {
+    ) {
         settings.ball.speedX *= -1;
         settings.ball.speedX *= settings.ball.accelerationX;
         settings.score.second++;
@@ -218,6 +225,7 @@ let frame = function () {
         stopGame(2);
     }
 
+    render.reRender();
     render.ball();
     render.rocket(1);
     render.rocket(2);
@@ -227,8 +235,6 @@ let frame = function () {
     else
         animation = requestAnimationFrame(frame);
 }
-let animation = requestAnimationFrame(frame);
-
 
 let keyuppedFirst = true,
     keyuppedSecond = true;
@@ -266,6 +272,5 @@ addEventListener("keyup", function (e) {
     }
 
 });
-let render = new Render();
 
 renderStart();
