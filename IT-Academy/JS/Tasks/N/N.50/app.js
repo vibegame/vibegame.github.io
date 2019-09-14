@@ -72,6 +72,8 @@ let settings = {
 };
 
 function renderStart() {
+    t = 0;
+    frames = 0;
     settings.ball.speedX = Math.random()/2 + 1;
     settings.ball.speedY = Math.random()/2 + 0.5;
     settings.rockets.first.x = 0;
@@ -173,8 +175,15 @@ function Render() {
 let render = new Render();
 
 let animation = requestAnimationFrame(frame);
-
+let t = 0, frames = 0;
 function frame() {
+    frames++;
+    if(t == 0) {
+        t = 1;
+        setTimeout(function() {
+            console.log(frames);
+        }, 1010);
+    }
     settings.ball.x += settings.ball.speedX;
     settings.ball.y += settings.ball.speedY;
 
