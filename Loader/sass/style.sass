@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap');
+* 
+    margin: 0
+    padding: 0
+
+body
+    width: 100%
+    height: 100vh
+    min-width: 320px
+    overflow-x: hidden
+
+.Loader
+    position: relative
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    overflow: hidden
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 1rem
+    .logo
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        font-weight: bold
+        font-size: 4em
+        color: #f00
+        animation: animation__hue 7s infinite ease, blink 7s infinite ease
+
+@keyframes animation__hue
+    0%
+        filter: hue-rotate(0deg)
+    50%
+        filter: hue-rotate(180deg)
+    100%
+        filter: hue-rotate(0deg)
+@keyframes blink
+    0%
+        transform: rotate(0)
+    10%
+        transform: rotate(15deg)
+    20%
+        transform: rotate(0)
+    30%
+        transform: rotate(-15deg)
+    40%
+        transform: rotate(0)
+    100%
+        transform: rotate(0)
+        
+        

@@ -35,8 +35,8 @@ let settings = {
         y: 30,
         speedX: 1,
         speedY: 0.5,
-        accelerationX: 1.03,
-        accelerationY: 1.03
+        accelerationX: 1.04,
+        accelerationY: 1.04
     },
     rockets: {
         first: {
@@ -45,10 +45,8 @@ let settings = {
             color: "#E8D74D",
             x: 0,
             y: 0,
-            rx: 5,
-            ry: 5,
             speed: 0,
-            maxSpeed: 2
+            maxSpeed: 5
         },
         second: {
             width: 15,
@@ -56,10 +54,8 @@ let settings = {
             color: "#FF9661",
             x: 0,
             y: 0,
-            rx: 5,
-            ry: 5,
             speed: 0,
-            maxSpeed: 2
+            maxSpeed: 5
         }
     },
     score: {
@@ -72,10 +68,8 @@ let settings = {
 };
 
 function renderStart() {
-    t = 0;
-    frames = 0;
-    settings.ball.speedX = Math.random()/2 + 1;
-    settings.ball.speedY = Math.random()/2 + 0.5;
+    settings.ball.speedX = Math.random()/2 + 2;
+    settings.ball.speedY = Math.random()/2 + 1;
     settings.rockets.first.x = 0;
     settings.rockets.second.x = settings.board.width - settings.rockets.second.width;
     settings.rockets.first.y = settings.board.height / 2 - settings.rockets.first.height / 2;
@@ -174,16 +168,7 @@ function Render() {
 
 let render = new Render();
 
-let animation = requestAnimationFrame(frame);
-let t = 0, frames = 0;
 function frame() {
-    frames++;
-    if(t == 0) {
-        t = 1;
-        setTimeout(function() {
-            console.log(frames);
-        }, 1010);
-    }
     settings.ball.x += settings.ball.speedX;
     settings.ball.y += settings.ball.speedY;
 
@@ -212,8 +197,6 @@ function frame() {
     ) {
         settings.ball.speedX *= -1;
         settings.ball.speedX *= settings.ball.accelerationX;
-        settings.score.first++;
-        render.score();
     }
 
     if (settings.ball.x + settings.ball.radius >= settings.board.width - settings.rockets.second.width &&
@@ -222,16 +205,18 @@ function frame() {
     ) {
         settings.ball.speedX *= -1;
         settings.ball.speedX *= settings.ball.accelerationX;
-        settings.score.second++;
-        render.score();
     }
 
 
     if (settings.ball.x + settings.ball.radius >= settings.board.width) {
         stopGame(1);
+        settings.score.first++;
+        render.score();
     }
     if (settings.ball.x - settings.ball.radius <= 0) {
         stopGame(2);
+        settings.score.second++;
+        render.score();
     }
 
     render.reRender();
