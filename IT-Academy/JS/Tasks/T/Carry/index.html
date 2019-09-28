@@ -1,12 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+<html>
+<title>Lazy Load Images</title>
 <body>
-    <script src="./app.js"></script>
+    <style>
+        .lzy_img {
+            display: block;
+            height: 500px;
+        }
+    </style>
+    <div>
+        <div style="">
+            <img class="lzy_img" src="lazy_img.jpg" data-src="img_1.jpg" />
+            <hr />
+        </div>
+        <div style="">
+            <img class="lzy_img" src="lazy_img.jpg" data-src="img_2.jpg" />
+            <hr />
+        </div>
+        <div style="">
+            <img class="lzy_img" src="lazy_img.jpg" data-src="img_3.jpg" />
+            <hr />
+        </div>
+        <div style="">
+            <img class="lzy_img" src="lazy_img.jpg" data-src="img_4.jpg" />
+            <hr />
+        </div>
+        <div style="">
+            <img class="lzy_img" src="lazy_img.jpg" data-src="img_5.jpg" />
+            <hr />
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const imageObserver = new IntersectionObserver((entries, imgObserver) => {
+                entries.forEach((entry) => {
+                    console.log(entry);
+                    if (entry.isIntersecting) {
+                        const lazyImage = entry.target
+                        console.log("lazy loading ", lazyImage)
+                        lazyImage.src = lazyImage.dataset.src
+                    }
+                })
+            });
+            const arr = document.querySelectorAll('img.lzy_img')
+            arr.forEach((v) => {
+                imageObserver.observe(v);
+            })
+        })
+    </script>
 </body>
 </html>
