@@ -1,0 +1,78 @@
+table tr:nth-child(3) .card {
+    position: relative;
+    display: flex;
+    width: 450px;
+    height: 250px;
+    border: 1px solid #333;
+    background: linear-gradient(135deg,#696e73,#151e26);
+    margin: auto;
+}
+
+table tr:nth-child(3) .card .bg-logo {
+    position: absolute;
+    font-size: 140px;
+    color: #fff;
+    opacity: 0.07;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(18deg)
+}
+
+table tr:nth-child(3) .card .card-block {
+    display: flex;
+    position: relative;
+    width: calc(50% - 2px);
+    height: 100%;
+}
+
+table tr:nth-child(3) .card .bg-logo,
+table tr:nth-child(3) .card h4
+{
+    font-family: BlackStar;
+}
+table tr:nth-child(3) .card .card-left {
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 30px;
+}
+table tr:nth-child(3) .card h4 {
+    font-size: 45px;
+    color: #fff;
+    padding-bottom: 15px;
+}
+table tr:nth-child(3) .card h4 span {
+    color: #ff4646;
+}
+table tr:nth-child(3) .card h5 {
+    color: #fff;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 100;
+}
+
+table tr:nth-child(3) .card .card-right {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 30px;
+}
+table tr:nth-child(3) .card .card-right .info-block {}
+table tr:nth-child(3) .card .card-right .info-block .info {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 11px 0;
+}
+table tr:nth-child(3) .card .card-right .info-block .info.user {
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 15px;
+}
+table tr:nth-child(3) .card .card-right .info-block .info img {
+    margin-right: 10px;
+    width: 17px;
+}
+
