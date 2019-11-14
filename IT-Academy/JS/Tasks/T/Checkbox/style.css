@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+svg {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+}
+
+polyline {
+    stroke-dasharray: 15;
+    stroke-dashoffset: 15;
+
+}
+
+svg.active polyline {
+    stroke-dasharray: 15;
+    stroke-dashoffset: 0;
+    transition: .3s;
+}
