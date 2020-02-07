@@ -1,15 +1,14 @@
 import React, {createRef, useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react';
-import ReactDOM from 'react-dom';
-
 import * as PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import Storage from "../Storage";
+import ScatterStorage from "../ScatterStorage";
 
 import style from './Scatter.pcss';
 
-const scatterStorage = new Storage();
+
+const scatterStorage = new ScatterStorage();
 
 const Scatter = props => {
 
@@ -19,17 +18,11 @@ const Scatter = props => {
 
   useLayoutEffect(() => {
 
-    if(scatterStorage.getCount() === 0) {
-      document.body.style.overflow = 'hidden';
-    }
-
-    KEY.current = scatterStorage.addItem(null);
+    KEY.current = scatterStorage.addItem({
+      item: null
+    });
 
     return () => {
-      if(scatterStorage.getCount() === 1) {
-        document.body.style.overflow = '';
-      }
-
       scatterStorage.deleteItem(KEY.current);
     };
   }, []);
@@ -50,18 +43,15 @@ const Scatter = props => {
 
   }, [props.children, props.className]);
 
-  const onClick = useCallback((event) => {
-    console.log(event.target, KEY.current);
+  const onMouseDown = useCallback((event) => {
+    event.stopPropagation();
     props.onClick && props.onClick(event.target);
   }, [props.onClick]);
 
   return (
         <div
           className={classNames(style.container, notEnoughSpace && style.contentToTop, props.className)}
-          style={{
-            zIndex: props.zIndex
-          }}
-          onClick={onClick}
+          onMouseDown={onMouseDown}
           ref={refContainer}
         >
           {props.children}
@@ -71,13 +61,9 @@ const Scatter = props => {
 };
 
 Scatter.propTypes = {
-  zIndex: PropTypes.number,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
   onClick: PropTypes.func,
   className: PropTypes.string
-};
-Scatter.defaultProps = {
-  zIndex: 1
 };
 
 export default Scatter;
