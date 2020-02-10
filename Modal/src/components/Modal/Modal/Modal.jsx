@@ -1,4 +1,4 @@
-import React, {createRef, useCallback, useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 
@@ -9,10 +9,9 @@ import Scatter from "../Scatter/Scatter";
 
 export const modalsStorage = new ModalsStorage();
 
-const Modal = props => {
+const Modal = React.forwardRef((props, refModal) => {
 
     const KEY = useRef();
-    const refModal = createRef();
 
     const onClose = useCallback(() => {
         props.onClose && props.onClose();
@@ -45,6 +44,7 @@ const Modal = props => {
             })
         );
     };
+
 
     useEffect(() => {
         KEY.current = modalsStorage.addItem({
@@ -92,12 +92,11 @@ const Modal = props => {
 
     );
 
-
-};
+});
 
 Modal.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    children: PropTypes.any,
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]),
     onClose: PropTypes.func.isRequired,
     onOpen: PropTypes.func.isRequired,
     trigger: PropTypes.node.isRequired,

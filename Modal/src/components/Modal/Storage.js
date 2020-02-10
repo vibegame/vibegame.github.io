@@ -75,7 +75,7 @@ class Storage {
   };
 
   get latest() {
-    return this.items[this.count - 1];
+    return [this.keys[this.count - 1], this.items[this.count - 1]]; // [key, value]
   }
 
   get isEmpty() {

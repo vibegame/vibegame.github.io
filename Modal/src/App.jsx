@@ -17,6 +17,8 @@ const App = (props) => {
                 trigger={
                     <div>First Modal</div>
                 }
+                needCloseOnEscape={true}
+                token={123}
             >
                 <ModalWrapper
                     onOpen={() => setOpened1(true)}
