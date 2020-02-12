@@ -1,0 +1,177 @@
+.btn {
+    display: inline-flex;
+    height: 40px;
+    padding: 10px 20px;
+    background-color: #3f1eef;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.table {
+    width: 1000px;
+    height: 545px;
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        cursor: pointer;
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.25);
+        transition: color .2s ease;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+    }
+}
+
+.expand {
+    width: 100%;
+    height: 200px;
+    background-color: #ffffff;
+}
+
+.title {
+    position: relative;
+    padding: 8px 26px 7px 21px;
+    background: #fafafa;
+    font-size: 10px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    text-align: center;
+    box-shadow:
+            inset 0 1px 0 0 #dbdbdb,
+            inset 0 -1px 0 0 #dbdbdb;
+    &:before, &:after {
+        display: none;
+        content: "";
+        position: absolute;
+        height: 70%;
+        width: 1px;
+        background: #dbdbdb;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &:before {
+        left: 0;
+    }
+    &:after {
+        right: 0;
+    }
+    &.titleSorted {
+        background: #e4e6eb;
+    }
+    &.draggingTitle {
+        background: #f3f4f7;
+    }
+    &:hover {
+        background: #f3f4f7;
+        box-shadow:
+                inset 0 1px 0 0 #dbdbdb,
+                inset 0 -1px 0 0 #dbdbdb,
+                inset 1px 0 0 0 #dbdbdb,
+                inset -1px 0 0 0 #dbdbdb;
+        & + .title {
+            &:before {
+                display: none !important;
+                background: red;
+            }
+        }
+    }
+    cursor: pointer;
+}
+
+.head {
+    &:hover {
+        .title {
+            &:before {
+                display: block;
+            }
+            &:last-child {
+                &:after {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.row {
+
+}
+
+.body {
+    position: relative;
+    background: rgba(255, 255, 255, 1);
+    .draggingBody {
+        background: rgba(255, 255, 255, .95);
+        box-shadow:
+            inset 1px 0 0 0 #dbdbdb,
+            inset -1px 0 0 0 #dbdbdb;
+    }
+}
+
+
+
+.cell {
+    padding: 16px 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &.draggingCell {
+        opacity: .3;
+    }
+}
+
+
+.resizing {
+
+}
+
+.dragging {
+    .title {
+        &:before {
+            display: block;
+        }
+        &:last-child {
+            &:after {
+                display: block;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    transform: translateX(50%);
+    background-color: transparent;
+    cursor: col-resize;
+    z-index: 1;
+}

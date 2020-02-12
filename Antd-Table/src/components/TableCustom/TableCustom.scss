@@ -1,0 +1,81 @@
+.wrapper {
+  display: inline-flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.table {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+
+.title {
+  position: relative;
+}
+
+.body {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.content {
+  position: relative;
+  display: inline-flex;
+  width: fit-content;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.wrapperRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  display: inline-flex;
+  will-change: transform;
+  transform: translateZ(0);
+  overflow: hidden;
+}
+
+.fixedHead {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  z-index: 1000;
+}
+
+.draggingHead {
+  position: absolute !important;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  user-select: none;
+}
+
+.draggingContent {
+  position: absolute !important;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.resizer {
+  position: absolute;
+}
