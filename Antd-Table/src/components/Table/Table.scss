@@ -1,0 +1,32 @@
+.table {
+  display: inline-block;
+  overflow-y: auto;
+  height: 400px;
+  max-width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.cell {
+  display: block;
+  flex: none;
+}
+
+.title {
+  position: relative;
+  display: block;
+  flex: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}
