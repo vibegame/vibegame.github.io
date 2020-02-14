@@ -4,28 +4,11 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import WidthResizer, {useResize} from "./Resizer";
-
 import {useScroll} from "./Scroller";
 
+import TableStorage from "./TableStorage";
+
 import style from './Table.scss';
-
-const findElementByAttribute = (element, attribute) => {
-
-    let usedElement = element;
-    let result = null;
-    if (!(element instanceof HTMLElement)) return result;
-
-    while (usedElement !== document.documentElement) {
-        if (usedElement.hasAttribute(attribute)) {
-            result = usedElement;
-            break;
-        }
-        usedElement = usedElement.parentNode;
-    }
-
-    return result;
-};
 
 const Cell = props => {
     return (
@@ -47,9 +30,8 @@ const Title = props => {
 
 const Table = props => {
 
-    const resizeManager = useMemo(() => new WidthResizer(props.columns), [props.columns]);
-
     const {onScroll, scrollData} = useScroll();
+    const storage = useMemo(() => (new TableStorage({columns: props.columns})), [props.columns]);
 
     const renderTitles = () => {
         return (
@@ -64,10 +46,10 @@ const Table = props => {
                         return (
                             <Title
                                 key={column.key}
-                                style={{
-                                    width: resizeManager.getWidth(column.key)
-                                }}
                                 className={style.title}
+                                style={{
+                                    width: storage.getWidth(column.key)
+                                }}
                             >
                                 {column.title}
                             </Title>
@@ -91,7 +73,7 @@ const Table = props => {
                             <Cell
                                 key={column.key}
                                 style={{
-                                    width: resizeManager.getWidth(column.key)
+                                    width: storage.getWidth(column.key)
                                 }}
                             >
                                 {column.render(row)}
@@ -109,11 +91,7 @@ const Table = props => {
             className={style.table}
             onScroll={onScroll}
         >
-            <div
-                className={style.header}
-            >
-                {renderTitles()}
-            </div>
+            {renderTitles()}
             <div
                 className={style.body}
             >
