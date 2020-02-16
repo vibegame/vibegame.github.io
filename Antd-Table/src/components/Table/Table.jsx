@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import {useScroll} from "./Scroller";
 
-import TableStorage from "./TableStorage";
+import Storage from "./Storage";
 
 import style from './Table.scss';
 
@@ -31,7 +31,108 @@ const Title = props => {
 const Table = props => {
 
     const {onScroll, scrollData} = useScroll();
-    const storage = useMemo(() => (new TableStorage({columns: props.columns})), [props.columns]);
+
+    const storage = useMemo(() => new Storage(props.columns), [props.columns]);
+
+    const [widths, _updateWidths] = useState(() => storage.getWidths());
+
+    const [resizingColumn, setResizingColumn] = useState(null);
+
+    const [draggedColumn, setDraggedColumn] = useState(null);
+
+    const updateWidths = () => {
+        _updateWidths(storage.getWidths());
+    };
+
+    const changeWidth = ({key, width}) => {
+        storage.changeWidth({key, width});
+        updateWidths();
+    };
+
+    const removeResizingColumn = () => {
+        setResizingColumn(null);
+    };
+    const removeDraggedColumn = () => {
+        setDraggedColumn(null);
+    };
+
+    const createResizingColumn = ({startPointX, key}) => {
+        setResizingColumn({
+            startPointX,
+            key
+        });
+    };
+    const createDraggedColumn = ({startX, key}) => {
+        setDraggedColumn({
+            startX,
+            key
+        });
+    };
+    const changeDraggedColumnPosition = position => {
+        setDraggedColumn(
+            {
+                ...draggedColumn,
+                position
+            }
+        );
+    };
+
+    const resizeStart = (event) => {
+        event.stopPropagation();
+
+
+        const target = event.currentTarget;
+        const key = target.dataset.resizeKey;
+        const startPointX = event.clientX;
+
+        createResizingColumn({key, startPointX});
+    };
+
+    const onResize = (event) => {
+
+        event.preventDefault();
+        const mouseX = event.clientX;
+
+        const columnWidth = widths[resizingColumn.key];
+        const distance = mouseX - resizingColumn.startPointX;
+
+        changeWidth({
+            key: resizingColumn.key,
+            width: columnWidth + distance
+        });
+
+    };
+
+    const resizeEnd = () => {
+        props.onChangeWidth && props.onChangeWidth({
+            key: resizingColumn.key,
+            width: widths[resizingColumn.key]
+        });
+        removeResizingColumn();
+    };
+
+    const dragStart = (event) => {
+        const target = event.currentTarget;
+        const key = target.dataset.dragKey;
+        const mouseX = event.clientX;
+
+        createDraggedColumn({
+            startX: mouseX,
+            key
+        });
+
+    };
+
+    const onDragMove = (event) => {
+        event.preventDefault();
+        const mouseX = event.clientX;
+        const position = mouseX - draggedColumn.startX;
+        changeDraggedColumnPosition(position);
+    };
+
+    const dragEnd = () => {
+        removeDraggedColumn();
+    };
 
     const renderTitles = () => {
         return (
@@ -48,10 +149,18 @@ const Table = props => {
                                 key={column.key}
                                 className={style.title}
                                 style={{
-                                    width: storage.getWidth(column.key)
+                                    width: widths[column.key],
+                                    transform: `translate(${(draggedColumn && draggedColumn.key === column.key) ? draggedColumn.position : 0}px,0)`
                                 }}
+                                data-drag-key={column.key}
+                                onMouseDown={dragStart}
                             >
                                 {column.title}
+                                <span
+                                    data-resize-key={column.key}
+                                    onMouseDown={resizeStart}
+                                    className={style.resizer}
+                                />
                             </Title>
                         );
                     })
@@ -73,7 +182,8 @@ const Table = props => {
                             <Cell
                                 key={column.key}
                                 style={{
-                                    width: storage.getWidth(column.key)
+                                    width: widths[column.key],
+                                    transform: `translate(${(draggedColumn && draggedColumn.key === column.key) ? draggedColumn.position : 0}px,0)`
                                 }}
                             >
                                 {column.render(row)}
@@ -85,6 +195,35 @@ const Table = props => {
         });
 
     };
+
+    useLayoutEffect(() => {
+        if (resizingColumn) {
+            window.addEventListener('mousemove', onResize);
+            window.addEventListener('mouseup', resizeEnd);
+        }
+        return () => {
+            if (resizingColumn) {
+                window.removeEventListener('mousemove', onResize);
+                window.removeEventListener('mouseup', resizeEnd);
+            }
+        };
+    }, [resizingColumn]);
+    useLayoutEffect(() => {
+        if (draggedColumn) {
+            window.addEventListener('mousemove', onDragMove);
+            window.addEventListener('mouseup', dragEnd);
+        }
+        return () => {
+            if (draggedColumn) {
+                window.removeEventListener('mousemove', onDragMove);
+                window.removeEventListener('mouseup', dragEnd);
+            }
+        };
+    }, [draggedColumn]);
+
+    useEffect(() => {
+        updateWidths();
+    }, [storage]);
 
     return (
         <div
@@ -119,7 +258,8 @@ Table.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
     })),
-    fixedHeader: PropTypes.bool
+    fixedHeader: PropTypes.bool,
+    onChangeWidth: PropTypes.func
 };
 
 Table.defaultProps = {

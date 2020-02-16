@@ -14,9 +14,9 @@ const App = (props) => {
                 title: "Имя",
                 key: 'name',
                 render: ({name}) => name,
-                width: 700,
+                width: 200,
                 minWidth: 150,
-                maxWidth: 800,
+                maxWidth: 300,
             },
             {
                 title: "Фамилия",
@@ -32,7 +32,7 @@ const App = (props) => {
                 render: ({age}) => age,
                 width: 150,
                 minWidth: 150,
-                maxWidth: 600,
+                maxWidth: 10000,
             }
         ]
     );
@@ -45,13 +45,13 @@ const App = (props) => {
         const surnames = ['Shmyga', 'Tolstik', 'Nedveckaya', 'Devyaten'];
         const ages = [18, 20, 25, 30, 35, 36];
         const newData = [];
-        for(let i = 0;i<100;i++) {
+        for(let i = 0;i<20;i++) {
             newData.push(
                 {
                     name: names[Math.floor(Math.random()*names.length)],
                     surname: surnames[Math.floor(Math.random()*surnames.length)],
                     age: ages[Math.floor(Math.random()*ages.length)],
-                    key: Math.floor(Math.random()*100000)
+                    key: Math.floor(Math.random()*10000000000)
                 }
             );
         }
