@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .table {
   display: inline-block;
   overflow-y: auto;
@@ -6,6 +9,7 @@
 }
 
 .body {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
@@ -13,6 +17,14 @@
 .row {
   display: inline-flex;
   flex-direction: row;
+  width: min-content;
+  flex: none;
+}
+
+.wrapperRow {
+  display: inline-flex;
+  flex-direction: column;
+  width: min-content;
 }
 
 .cell {
@@ -24,7 +36,11 @@
   position: relative;
   display: block;
   flex: none;
-  cursor: pointer;
+  cursor: grab;
+  padding: 0 10px;
+  height: 30px;
+  box-sizing: border-box;
+  background: #ffffff;
 }
 
 .header {
@@ -34,13 +50,39 @@
   z-index: 2;
 }
 
-.resizer {
+.resizeable {
   position: absolute;
   width: 10px;
-  right: 0;
-  transform: translateX(50%);
+  left: -10px;
   height: 100%;
   background-color: lime;
   cursor: col-resize;
   z-index: 1500;
+}
+
+.draggedColumn {
+  cursor: grabbing;
+  pointer-events: none;
+}
+
+[data-cursor-all-grabbing] {
+  * {
+    cursor: grabbing !important;
+  }
+}
+
+[data-cursor-all-resize] {
+  * {
+    cursor: col-resize;
+  }
+}
+
+.expand {
+  display: inline-block;
+  width: 100%;
+  height: 200px;
+}
+
+.expandWrapper {
+  display: inline-block;
 }

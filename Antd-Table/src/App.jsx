@@ -62,6 +62,7 @@ const App = (props) => {
                 <Table
                     columns={columns}
                     data={data}
+                    expandedRow={(data) => (<div className={style.expand}>{data.name}</div>)}
                     fixedHeader
                 />
     );
