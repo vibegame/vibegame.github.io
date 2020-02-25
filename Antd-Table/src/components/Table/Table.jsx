@@ -173,6 +173,7 @@ const Table = props => {
     const onResizeEnd = () => {
         document.body.removeAttribute('data-cursor-all-resize');
         removeResizeable();
+        props.onChangeWidths && props.onChangeWidths(widths);
     };
 
     const onResizeableMouseDown = (event) => {
@@ -412,6 +413,7 @@ const Table = props => {
 
     useLayoutEffect(() => {
         translateTransitions.current = getStartTranslateTransitions();
+        props.onChangeOrder && props.onChangeOrder(order);
     }, [order]);
 
 
@@ -602,7 +604,9 @@ Table.propTypes = {
     })),
     fixedHeader: PropTypes.bool,
     onChangeWidth: PropTypes.func,
-    expandedRow: PropTypes.func
+    expandedRow: PropTypes.func,
+    onChangeOrder: PropTypes.func,
+    onChangeWidths: PropTypes.func,
 };
 
 Table.defaultProps = {
