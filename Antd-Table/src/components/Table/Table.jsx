@@ -602,7 +602,6 @@ Table.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     })),
-    fixedHeader: PropTypes.bool,
     onChangeWidth: PropTypes.func,
     expandedRow: PropTypes.func,
     onChangeOrder: PropTypes.func,

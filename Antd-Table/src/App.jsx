@@ -63,7 +63,6 @@ const App = (props) => {
                     columns={columns}
                     data={data}
                     expandedRow={(data) => (<div className={style.expand}>{data.name}</div>)}
-                    fixedHeader
                 />
     );
 };
