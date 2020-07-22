@@ -1,0 +1,19 @@
+Написать функцию, которая решает пример по арифметике. Числа с десятичными дробями можно не учитывать
+
+const resolveArithmeticExpression = function(expression) {...}
+
+const expressionExample1 = "1+2+3-4";
+
+const expressionExample2 = "2+2*2";
+
+const expressionExample3 = "5*(2+3)";
+
+const expressionExample4 = "10/(2+3)"
+
+resolveArithmeticExpression(expressionExample1); // 2
+
+resolveArithmeticExpression(expressionExample2); // 6
+
+resolveArithmeticExpression(expressionExample3); // 25
+
+resolveArithmeticExpression(expressionExample4); // 2

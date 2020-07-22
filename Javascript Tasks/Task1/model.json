@@ -1,0 +1,33 @@
+[{
+        "label": "Website URL",
+        "kind": "input",
+        "name": "url",
+        "validation": "text"
+    },
+    {
+        "label": "Email",
+        "kind": "input",
+        "name": "password",
+        "validation": "text"
+    },
+    {
+        "label": "Count of users",
+        "kind": "input",
+        "name": "users_count",
+        "validation": "number"
+    },
+    {
+        "label": "Description",
+        "kind": "memo",
+        "name": "description"
+    },
+    {
+        "label": "Allow reviews",
+        "kind": "checkbox",
+        "name": "save"
+    },
+    {
+        "label": "Login",
+        "kind": "submit"
+    }
+]
