@@ -8,6 +8,16 @@
   box-sizing: border-box;
 }
 
+body {
+  min-height: 100vh;
+  /* mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
 .container {
   width: 100vw;
   height: calc(var(--vh) * 100);
