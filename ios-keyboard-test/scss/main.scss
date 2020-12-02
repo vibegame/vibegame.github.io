@@ -1,0 +1,31 @@
+:root {
+  --vh: 1vh;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+  height: calc(var(--vh) * 100);
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-input {
+  height: 40px;
+  width: 100%;
+  border: solid 1px cornflowerblue;
+  margin-top: auto;
+  outline: none;
+}
+
+.systemInfoOutput {
+  display: block;
+  font-size: 18px;
+  font-family: sans-serif;
+}
